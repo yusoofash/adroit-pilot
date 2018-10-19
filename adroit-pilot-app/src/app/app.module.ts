@@ -17,6 +17,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { UserLoginComponent } from './login/user-login/user-login.component';
+import { CompanyLoginComponent } from './login/company-login/company-login.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { MatListModule } from '@angular/material/list';
     CompanySignupComponent,
     HomepageComponent,
     NavbarComponent,
+    UserLoginComponent,
+    CompanyLoginComponent,
   ],
   imports: [
     BrowserModule,
