@@ -19,6 +19,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
 import { UserLoginComponent } from './login/user-login/user-login.component';
 import { CompanyLoginComponent } from './login/company-login/company-login.component';
+import { LoginTempleteComponent } from './login/login-templete/login-templete.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { CompanyLoginComponent } from './login/company-login/company-login.compo
     NavbarComponent,
     UserLoginComponent,
     CompanyLoginComponent,
+    LoginTempleteComponent,
   ],
   imports: [
     BrowserModule,
