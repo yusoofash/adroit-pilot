@@ -12,10 +12,12 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input matInput placeholder="Password" type="password" maxlength="10" required>
+    <input matInput placeholder="Password" type="password" 
+    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
+    title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" required>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Confirm Password" type="password">
+    <input matInput placeholder="Confirm Password" type="password" >
   </mat-form-field>
   <button mat-raised-button color="primary">Submit</button>
 
