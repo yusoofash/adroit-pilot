@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './/app-routing.module';
@@ -36,6 +36,7 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    ReactiveFormsModule,
     MatCardModule,
     MatListModule,
     MatToolbarModule,

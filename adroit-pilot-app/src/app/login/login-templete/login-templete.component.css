@@ -1,0 +1,14 @@
+.login-form-card{
+    min-width: 150px;
+    max-width: 400px;
+    width: 100%;
+    margin: auto;
+}
+.login-form {
+    display: flex;
+    flex-flow: column;
+  }
+  
+  .login-full-width {
+    width: 100%;
+  }

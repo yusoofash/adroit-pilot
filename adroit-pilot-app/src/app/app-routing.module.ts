@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { UserSignupComponent } from './signup/user-signup/user-signup.component';
 import { CompanySignupComponent } from './signup/company-signup/company-signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { CompanyLoginComponent } from './login/company-login/company-login.component';
+import { UserLoginComponent } from './login/user-login/user-login.component';
 import { RouterModule, Routes } from '@angular/router';
 
 export const routes: Routes = [
@@ -12,7 +14,9 @@ export const routes: Routes = [
   },
   { path: 'user-signup', component: UserSignupComponent },
   { path: 'company-signup', component: CompanySignupComponent },
-  { path: 'home', component: HomepageComponent }
+  { path: 'home', component: HomepageComponent },
+  { path: 'company-login', component: CompanyLoginComponent },
+  { path: 'user-login', component: UserLoginComponent }
 ];
 
 @NgModule({
