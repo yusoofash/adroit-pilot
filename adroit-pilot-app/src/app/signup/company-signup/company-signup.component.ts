@@ -1,11 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { Company } from '../models/company.model';
+import { FormBuilder } from '@angular/forms';
+import { SignupService } from '../signup.service';
+import { MatDialog } from '@angular/material';
+import { PopupComponent } from '../../common/popup/popup.component';
+
 @Component({
   selector: 'app-company-signup',
   templateUrl: './company-signup.component.html',
   styleUrls: ['./company-signup.component.css']
 })
 export class CompanySignupComponent implements OnInit {
+
   companyDetails: Company = {
     company_name: '',
     HR: '',
@@ -18,22 +24,26 @@ export class CompanySignupComponent implements OnInit {
   };
   confirm_password: string;
   response: string;
-  constructor() { }
+  companyForm: FormBuilder;
+
+  constructor(private signupService: SignupService, public dialog: MatDialog) {
+  }
 
   ngOnInit() {
   }
-  password_check(e: any) {
-    const user_password = e.target.value;
-    if (user_password.length < 8) {
-      this.response = 'Password lesser than 8 characters';
-    } else {
-      this.response = '';
-    }
 
-
+  submit(companyform) {
+    this.signupService.registerCompany(this.companyDetails)
+      .subscribe(res => {
+        this.response = res.toString();
+        if (this.response === 'success') {
+          this.dialog.open(PopupComponent, {
+            data: { message: 'Registered Successfully' }
+          });
+          companyform.resetForm();
+        }
+      });
   }
-
-
 
 
 
