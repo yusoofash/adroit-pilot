@@ -1,80 +1,77 @@
 <mat-card class="company-form my-3">
-<<<<<<< HEAD
-  <mat-card-title class="text-center primary">Companys Signup</mat-card-title>
-  <form class="d-flex flex-flow-column">
-=======
-  <mat-card-title class="text-center primary">Company Signup</mat-card-title>
+  <mat-card-title class="text-center primary text-uppercase">Company Signup</mat-card-title>
   <form #companyForm="ngForm" class="d-flex flex-flow-column" (ngSubmit)="submit(companyForm)">
->>>>>>> adroit-signup
     <mat-form-field>
       <input #company_name1="ngModel" name="company_name" [(ngModel)]="companyDetails.company_name" matInput
         placeholder="Company Name" required>
+        <mat-error *ngIf="company_name1.invalid">
+          Company name is required
+        </mat-error>
     </mat-form-field>
-    <div [hidden]="company_name1.valid || company_name1.pristine" class="alert alert-danger">
-      Name is a required field
-    </div>
     <mat-form-field>
       <input #HR1="ngModel" name="HR" [(ngModel)]="companyDetails.HR" matInput placeholder="HR" required>
+      <mat-error *ngIf="HR1.invalid">
+        HR is required
+      </mat-error>
     </mat-form-field>
-    <div [hidden]="HR1.valid || HR1.pristine" class="alert alert-danger">
-      HR is a required field
-    </div>
     <mat-form-field>
       <textarea #company_location1="ngModel" name="company_location" [(ngModel)]="companyDetails.company_location"
         matInput placeholder="Company Location" required></textarea>
-    </mat-form-field>
-    <div [hidden]="company_location1.valid || company_location1.pristine" class="alert alert-danger">
-      Company location is a required field
-    </div>
+        <mat-error *ngIf="company_location1.invalid">
+          Company location is required
+        </mat-error>
+      </mat-form-field>
     <mat-form-field>
       <input #email1="ngModel" type="email" name="email" [(ngModel)]="companyDetails.email" matInput placeholder="Email"
         required email>
+        <mat-error *ngIf="email1.errors?.email && email1.invalid && email1.dirty">
+          Invalid email
+        </mat-error>
+        <mat-error *ngIf="email1.errors?.required">
+          Email is required
+        </mat-error>
     </mat-form-field>
-    <div class="alert alert-danger" *ngIf="email1.invalid && email1.dirty && email1.value != '' ">
-      Invalid email
-    </div>
-    <div class="alert alert-danger" [hidden]="email1.valid || email1.pristine || email1.value !== ''">
-      Email is required
-    </div>
     <mat-form-field>
       <input #contact_no1="ngModel" name="contact_no" [(ngModel)]="companyDetails.contact_no" matInput placeholder="Contact number"
         required>
+        <mat-error *ngIf="contact_no1.invalid">
+          Contact is required
+        </mat-error>
     </mat-form-field>
-    <div [hidden]="contact_no1.valid || contact_no1.pristine" class="alert alert-danger">
-      Contact is a required field
-    </div>
     <mat-form-field>
       <input #keywords1="ngModel" name="keywords" [(ngModel)]="companyDetails.keywords" matInput placeholder="Keywords"
         required>
+        <mat-error *ngIf="keywords1.invalid">
+          Keywords is required
+        </mat-error>
     </mat-form-field>
-    <div [hidden]="keywords1.valid || keywords1.pristine" class="alert alert-danger">
-      Keywords is a required field
-    </div>
     <mat-form-field>
       <textarea #description1="ngModel" name="description" [(ngModel)]="companyDetails.description" matInput
         placeholder="Company Description" required></textarea>
+        <mat-error *ngIf="description1.invalid">
+          Company description is required
+        </mat-error>
     </mat-form-field>
-    <div [hidden]="description1.valid || description1.pristine" class="alert alert-danger">
-      Company description is a required field
-    </div>
     <mat-form-field>
       <input #password1="ngModel" name="password" [(ngModel)]="companyDetails.password" matInput placeholder="Password"
         type="password" minlength="8" required>
+        <mat-error *ngIf="password1.errors?.minlength">
+          Password must be at least 8 characters long.
+        </mat-error>
+        <mat-error *ngIf="password1.errors?.required">
+          Password is required
+        </mat-error>
     </mat-form-field>
-    <div *ngIf="password1.invalid && (password1.dirty || password1.touched)">
-      <div *ngIf="password1.errors.minlength" class="alert alert-danger">
-        Password must be at least 8 characters long.
-      </div>
-    </div>
     <mat-form-field>
       <input #confirm_password1="ngModel" name="confirm_password" [(ngModel)]="confirm_password" matInput placeholder="Confirm Password"
         type="password" required [appConfirmEqual]="companyDetails.password">
-    </mat-form-field>
-    <div *ngIf="password1.invalid && (password1.dirty || password1.touched)">
-      <div *ngIf="confirm_password1.errors?.notEqual" class="alert alert-danger">
-        Passwords do not match
-      </div>
-    </div>
+        <mat-error *ngIf="confirm_password1.errors?.notEqual && confirm_password1 !== ''">
+          Passwords do not match
+        </mat-error>
+        <mat-error *ngIf="confirm_password1.errors?.required">
+          Password is required
+        </mat-error>
+      </mat-form-field>
     <p class="text-capitalize text-info">{{response}}</p>
     <button mat-raised-button color="primary" [disabled]="!companyForm.form.valid">Submit</button>
   </form>

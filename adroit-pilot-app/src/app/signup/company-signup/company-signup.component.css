@@ -4,5 +4,9 @@
     margin: auto;
     padding: 1em;
 }
+.mat-form-field {
+    margin: 5px 0;
+}
+
 
  
