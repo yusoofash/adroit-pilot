@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginService } from '../login.service';
 
 @Component({
   selector: 'app-user-login',
@@ -7,13 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor() { }
+  constructor(private loginService: LoginService) { }
 
   ngOnInit() {
   }
 
   login(login_details) {
-    console.log(login_details);
+    this.loginService.loginCompany(login_details)
+    .subscribe(res => {
+      if (res['access_token']) {
+        this.loginService.setLocalStorage(res['access_token']);
+        alert('local storage set');
+      }
+    });
   }
 
 }

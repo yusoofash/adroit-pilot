@@ -1,0 +1,9 @@
+.user-form{
+    min-width: 150px;
+    max-width: 500px;
+    margin: auto;
+    padding: 2em;
+}
+.mat-form-field {
+    margin: 5px 0;
+}

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { MatCardModule } from '@angular/material/card';
 import { AppRoutingModule } from './/app-routing.module';
+import { MatDialogModule } from '@angular/material/dialog';
 import { UserSignupComponent } from './signup/user-signup/user-signup.component';
 import { CompanySignupComponent } from './signup/company-signup/company-signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -20,6 +21,10 @@ import { MatListModule } from '@angular/material/list';
 import { UserLoginComponent } from './login/user-login/user-login.component';
 import { CompanyLoginComponent } from './login/company-login/company-login.component';
 import { LoginTempleteComponent } from './login/login-templete/login-templete.component';
+import { ConfirmEqualDirective } from './signup/confirm-equal.directive';
+import { HttpClientModule } from '@angular/common/http';
+import { PopupComponent } from './common/popup/popup.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -31,11 +36,15 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
     UserLoginComponent,
     CompanyLoginComponent,
     LoginTempleteComponent,
+    ConfirmEqualDirective,
+    PopupComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     FormsModule,
+    HttpClientModule,
     ReactiveFormsModule,
     MatCardModule,
     MatListModule,
@@ -46,7 +55,11 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
     MatFormFieldModule,
     MatInputModule,
     MatSidenavModule,
-    MatButtonModule
+    MatButtonModule,
+    MatDialogModule,
+  ],
+  entryComponents: [
+    PopupComponent,
   ],
   providers: [],
 bootstrap: [AppComponent]
