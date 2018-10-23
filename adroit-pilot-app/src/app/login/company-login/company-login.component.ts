@@ -12,4 +12,8 @@ export class CompanyLoginComponent implements OnInit {
   ngOnInit() {
   }
 
+  login(login_details) {
+    console.log(login_details);
+  }
+
 }

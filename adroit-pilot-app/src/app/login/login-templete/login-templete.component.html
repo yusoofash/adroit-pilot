@@ -2,21 +2,25 @@
   <div>
     <h3 class="text-center text-secondary">{{entity}} Login</h3>
   </div>
-  <form class="login-form">
+  <form class="login-form" (ngSubmit)="login(loginForm.value)" [formGroup]="loginForm">
     <mat-form-field class="login-full-width">
-      <input matInput placeholder="Email" [formControl]="emailFormControl" [errorStateMatcher]="matcher">
-      <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+      <input matInput placeholder="Email" formControlName="email" email required>
+      <mat-error *ngIf="loginForm.controls['email'].errors?.email">
         Please enter a valid email address
       </mat-error>
-      <mat-error *ngIf="emailFormControl.hasError('required')">
+      <mat-error *ngIf="loginForm.controls['email'].errors?.required">
         Email is <strong>required</strong>
       </mat-error>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput placeholder="Password" type="password">
+      <input matInput placeholder="Password" formControlName="password" type="password" required>
+      <mat-error *ngIf="loginForm.controls['password'].errors?.required">
+        Password is <strong>required</strong>
+      </mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary">Login</button>
+    <button mat-raised-button color="primary" [disabled]="loginForm.invalid">Login</button>
+
   </form>
 </mat-card>
