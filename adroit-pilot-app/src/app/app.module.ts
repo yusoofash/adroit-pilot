@@ -18,9 +18,13 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatListModule } from '@angular/material/list';
+import { UserLoginComponent } from './login/user-login/user-login.component';
+import { CompanyLoginComponent } from './login/company-login/company-login.component';
+import { LoginTempleteComponent } from './login/login-templete/login-templete.component';
 import { ConfirmEqualDirective } from './signup/confirm-equal.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './common/popup/popup.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -29,8 +33,12 @@ import { PopupComponent } from './common/popup/popup.component';
     CompanySignupComponent,
     HomepageComponent,
     NavbarComponent,
+    UserLoginComponent,
+    CompanyLoginComponent,
+    LoginTempleteComponent,
     ConfirmEqualDirective,
     PopupComponent,
+    UserPageComponent,
   ],
   imports: [
     BrowserModule,
