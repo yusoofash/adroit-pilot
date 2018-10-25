@@ -4,7 +4,7 @@ export class Company {
     company_location: string;
     email: string;
     contact_no: number;
-    keywords: string;
+    keywords: Array<Object>;
     description: string;
     password: string;
 }

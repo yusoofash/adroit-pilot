@@ -25,6 +25,8 @@ import { ConfirmEqualDirective } from './signup/confirm-equal.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './common/popup/popup.component';
 import { UserPageComponent } from './user-page/user-page.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -57,6 +59,8 @@ import { UserPageComponent } from './user-page/user-page.component';
     MatSidenavModule,
     MatButtonModule,
     MatDialogModule,
+    MatGridListModule,
+    MatChipsModule,
   ],
   entryComponents: [
     PopupComponent,
