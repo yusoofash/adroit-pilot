@@ -24,7 +24,7 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
 import { ConfirmEqualDirective } from './signup/confirm-equal.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './common/popup/popup.component';
-import { UserPageComponent } from './user-page/user-page.component';
+import { UserPageModule } from './user-page/user-page.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,6 @@ import { UserPageComponent } from './user-page/user-page.component';
     LoginTempleteComponent,
     ConfirmEqualDirective,
     PopupComponent,
-    UserPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -57,6 +56,7 @@ import { UserPageComponent } from './user-page/user-page.component';
     MatSidenavModule,
     MatButtonModule,
     MatDialogModule,
+    UserPageModule,
   ],
   entryComponents: [
     PopupComponent,
