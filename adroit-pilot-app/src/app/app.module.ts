@@ -24,6 +24,9 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
 import { ConfirmEqualDirective } from './signup/confirm-equal.directive';
 import { HttpClientModule } from '@angular/common/http';
 import { PopupComponent } from './common/popup/popup.component';
+import { UserPageComponent } from './user-page/user-page.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatChipsModule } from '@angular/material/chips';
 import { UserPageModule } from './user-page/user-page.module';
 
 @NgModule({
@@ -56,6 +59,8 @@ import { UserPageModule } from './user-page/user-page.module';
     MatSidenavModule,
     MatButtonModule,
     MatDialogModule,
+    MatGridListModule,
+    MatChipsModule,
     UserPageModule,
   ],
   entryComponents: [

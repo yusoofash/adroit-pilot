@@ -4,9 +4,9 @@
     <mat-form-field>
       <input #company_name1="ngModel" name="company_name" [(ngModel)]="companyDetails.company_name" matInput
         placeholder="Company Name" required>
-        <mat-error *ngIf="company_name1.invalid">
-          Company name is required
-        </mat-error>
+      <mat-error *ngIf="company_name1.invalid">
+        Company name is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input #HR1="ngModel" name="HR" [(ngModel)]="companyDetails.HR" matInput placeholder="HR" required>
@@ -17,62 +17,74 @@
     <mat-form-field>
       <textarea #company_location1="ngModel" name="company_location" [(ngModel)]="companyDetails.company_location"
         matInput placeholder="Company Location" required></textarea>
-        <mat-error *ngIf="company_location1.invalid">
-          Company location is required
-        </mat-error>
-      </mat-form-field>
+      <mat-error *ngIf="company_location1.invalid">
+        Company location is required
+      </mat-error>
+    </mat-form-field>
     <mat-form-field>
       <input #email1="ngModel" type="email" name="email" [(ngModel)]="companyDetails.email" matInput placeholder="Email"
         required email>
-        <mat-error *ngIf="email1.errors?.email && email1.invalid && email1.dirty">
-          Invalid email
-        </mat-error>
-        <mat-error *ngIf="email1.errors?.required">
-          Email is required
-        </mat-error>
+      <mat-error *ngIf="email1.errors?.email && email1.invalid && email1.dirty">
+        Invalid email
+      </mat-error>
+      <mat-error *ngIf="email1.errors?.required">
+        Email is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input #contact_no1="ngModel" name="contact_no" [(ngModel)]="companyDetails.contact_no" matInput placeholder="Contact number"
         required>
-        <mat-error *ngIf="contact_no1.invalid">
-          Contact is required
-        </mat-error>
+      <mat-error *ngIf="contact_no1.invalid">
+        Contact is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input #keywords1="ngModel" name="keywords" [(ngModel)]="companyDetails.keywords" matInput placeholder="Keywords"
-        required>
-        <mat-error *ngIf="keywords1.invalid">
-          Keywords is required
-        </mat-error>
+      <mat-chip-list #chipList required (click)="keywords_pristine = !keywords_pristine">
+        <mat-chip *ngFor="let keyword of companyDetails.keywords" [selectable]="selectable" [removable]="removable"
+          (removed)="remove(keyword, chipList)">
+          {{keyword.name}}
+          <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+        </mat-chip>
+        <input placeholder="Enter Keywords" [matChipInputFor]="chipList"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" [matChipInputAddOnBlur]="addOnBlur"
+          (matChipInputTokenEnd)="add($event)"
+          (blur)="keywords_pristine = !keywords_pristine">
+          <mat-error *ngIf="companyDetails.keywords.length === 0 && !keywords_pristine">
+             {{addKeywordErrorState(chipList)}}
+          </mat-error>
+          <mat-error *ngIf="companyDetails.keywords.length !== 0">
+              {{removeKeywordErrorState(chipList)}}
+           </mat-error>
+      </mat-chip-list>
     </mat-form-field>
     <mat-form-field>
       <textarea #description1="ngModel" name="description" [(ngModel)]="companyDetails.description" matInput
         placeholder="Company Description" required></textarea>
-        <mat-error *ngIf="description1.invalid">
-          Company description is required
-        </mat-error>
+      <mat-error *ngIf="description1.invalid">
+        Company description is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input #password1="ngModel" name="password" [(ngModel)]="companyDetails.password" matInput placeholder="Password"
         type="password" minlength="8" required>
-        <mat-error *ngIf="password1.errors?.minlength">
-          Password must be at least 8 characters long.
-        </mat-error>
-        <mat-error *ngIf="password1.errors?.required">
-          Password is required
-        </mat-error>
+      <mat-error *ngIf="password1.errors?.minlength">
+        Password must be at least 8 characters long.
+      </mat-error>
+      <mat-error *ngIf="password1.errors?.required">
+        Password is required
+      </mat-error>
     </mat-form-field>
     <mat-form-field>
       <input #confirm_password1="ngModel" name="confirm_password" [(ngModel)]="confirm_password" matInput placeholder="Confirm Password"
         type="password" required [appConfirmEqual]="companyDetails.password">
-        <mat-error *ngIf="confirm_password1.errors?.notEqual && confirm_password1 !== ''">
-          Passwords do not match
-        </mat-error>
-        <mat-error *ngIf="confirm_password1.errors?.required">
-          Password is required
-        </mat-error>
-      </mat-form-field>
+      <mat-error *ngIf="confirm_password1.errors?.notEqual && confirm_password1 !== ''">
+        Passwords do not match
+      </mat-error>
+      <mat-error *ngIf="confirm_password1.errors?.required">
+        Password is required
+      </mat-error>
+    </mat-form-field>
     <p class="text-capitalize text-info">{{response}}</p>
-    <button mat-raised-button color="primary" [disabled]="!companyForm.form.valid">Submit</button>
+    <button mat-raised-button color="primary" [disabled]="!companyForm.form.valid && companyDetails.keywords.length === 0">Submit</button>
   </form>
 </mat-card>
