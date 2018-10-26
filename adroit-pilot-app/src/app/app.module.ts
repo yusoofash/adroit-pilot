@@ -27,6 +27,7 @@ import { PopupComponent } from './common/popup/popup.component';
 import { UserPageComponent } from './user-page/user-page.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatChipsModule } from '@angular/material/chips';
+import { UserPageModule } from './user-page/user-page.module';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,6 @@ import { MatChipsModule } from '@angular/material/chips';
     LoginTempleteComponent,
     ConfirmEqualDirective,
     PopupComponent,
-    UserPageComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +61,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatDialogModule,
     MatGridListModule,
     MatChipsModule,
+    UserPageModule,
   ],
   entryComponents: [
     PopupComponent,

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -8,7 +9,7 @@ import { LoginService } from '../login.service';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService) { }
+  constructor(private loginService: LoginService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -18,7 +19,7 @@ export class UserLoginComponent implements OnInit {
     .subscribe(res => {
       if (res['access_token']) {
         this.loginService.setLocalStorage(res['access_token']);
-        alert('local storage set');
+        this.router.navigate(['/user-home']);
       }
     });
   }
