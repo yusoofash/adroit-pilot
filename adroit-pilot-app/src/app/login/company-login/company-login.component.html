@@ -1,4 +1,8 @@
-
-<app-login-templete
-[entity]="'Company'"
-(login_details)="login($event)"></app-login-templete>
+<div class="mt-5">
+    <app-login-templete
+    [title]="'company'"
+    (loginDetails)="login($event)"
+    [response]="response"
+    ></app-login-templete>
+</div>
+<app-loader></app-loader>

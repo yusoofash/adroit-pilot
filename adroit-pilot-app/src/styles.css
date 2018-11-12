@@ -1,8 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
-@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat');
 
+html, body {
+    font-family: 'Montserrat', sans-serif;
+    min-height: 100vh;
+    background-image: linear-gradient(to right top, #051937, #1e1f4c, #3e215c, #621d66, #870b67);
+}
+:root{
+    --navbar-height: 60px;
+    --navbar-width: calc(200px + 3vw);
+    --navbar-hide-width: calc(-200px - 3vw);
+    --bg-purple: linear-gradient(to right top, #ff78dd, #ea6bca, #d65eb7, #c251a4, #ae4492);;
+}
 .align-items-center {
     align-items: center;
 }
@@ -12,9 +23,21 @@
 .flex-flow-column{
     flex-flow: column;
 }
+.cursor-pointer{
+    cursor: pointer;
+}
 .primary{
     color: #673ab7 !important;
 }
 .active {
     color: blue !important;
+}
+.fullpage-bg {
+    min-height: calc(100vh - var(--navbar-height));
+}
+.custom-card{
+    /* background-image: linear-gradient(to right top, #3c6bb1, #5e64b2, #7d5cad, #9751a2, #ae4492); */
+    background-image: linear-gradient(to right bottom, #6f1f68, #7f3685, #8e4da4, #9b64c3, #a57ce4);
+    border-radius: 5px;
+    padding: 1.3rem;
 }

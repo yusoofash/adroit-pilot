@@ -1,0 +1,27 @@
+.register-form{
+    max-width: 300px;
+    margin: auto;
+}
+.is-invalid {
+    border: 2px solid var(--danger);
+}
+.invalid-feedback, label {
+    color: white;
+}
+.register-title, button{
+    font-family: 'Merriweather Sans', sans-serif;
+    color: white;
+}
+.register-title {
+    border-left: 5px solid #4189e3;
+    padding-left: 10px;
+    display: inline-block;
+}
+span {
+    color: red;
+}
+@media only screen and (min-width: 700px) {
+    .register-form {
+        max-width: 500px;
+    }
+}

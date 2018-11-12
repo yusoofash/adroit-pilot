@@ -1,93 +1,56 @@
 import { Component, OnInit } from '@angular/core';
-import { Company } from '../models/company.model';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { SignupService } from '../signup.service';
-import { MatDialog, ErrorStateMatcher } from '@angular/material';
-import { PopupComponent } from '../../common/popup/popup.component';
-import { MatChipInputEvent } from '@angular/material';
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { SignupService, LoaderService } from '../../services';
 
 @Component({
   selector: 'app-company-signup',
   templateUrl: './company-signup.component.html',
-  styleUrls: ['./company-signup.component.css']
+  styleUrls: ['./company-signup.component.css', '../signup.css']
 })
 export class CompanySignupComponent implements OnInit {
 
-  companyDetails: Company = {
-    company_name: '',
-    HR: '',
-    company_location: '',
-    email: '',
-    contact_no: null,
-    keywords: [],
-    description: '',
-    password: ''
-  };
-  confirm_password: string;
-  response: string;
-  companyForm;
-  visible = true;
-  selectable = true;
-  removable = true;
-  addOnBlur = true;
-  readonly separatorKeysCodes: number[] = [ENTER, COMMA];
-  keywordsFormControl: FormControl;
-  keywords_pristine = true;
 
-  constructor(private signupService: SignupService, public dialog: MatDialog) {
+  response;
+  companyForm: FormGroup;
+  constructor(private signupService: SignupService,
+    private loaderService: LoaderService,
+    private fb: FormBuilder) {
+    this.companyForm = this.fb.group({
+      company_name: ['', Validators.required],
+      hr: ['', Validators.required],
+      pwd: this.fb.group({
+        password: ['', [Validators.required, Validators.minLength(8)]],
+        confirmPassword: ['', [Validators.required, Validators.minLength(8)]],
+      }, { validator: this.passwordMatch }),
+      email: ['', [Validators.required, Validators.email]],
+      company_location: ['', Validators.required],
+      keywords: ['', Validators.required],
+      description: ['', Validators.required],
+    });
   }
 
   ngOnInit() {
   }
 
-  addKeywordErrorState(a) {
-    a.errorState = true;
-    return 'Keywords is required';
+  get f() { return this.companyForm.controls; }
+
+  passwordMatch(c: FormGroup) {
+    return c.get('password').value === c.get('confirmPassword').value ? null : { mismatch: true };
   }
 
-  removeKeywordErrorState(a) {
-    a.errorState = false;
-  }
+  signup() {
+    this.response = null;
+    const {pwd, keywords, ...company} = this.companyForm.value;
+    const password = this.companyForm.controls.pwd.get('password').value;
+    const keywords_arr = keywords.split(',');
+    Object.assign(company, { password: password, keywords: keywords_arr });
 
-  submit(companyform) {
-    this.signupService.registerCompany(this.companyDetails)
-      .subscribe(res => {
-        this.response = res.toString();
-        if (this.response === 'success') {
-          this.dialog.open(PopupComponent, {
-            data: { message: 'Registered Successfully' }
-          });
-          companyform.resetForm();
-        }
-      });
-  }
-
-  add(event: MatChipInputEvent): void {
-    const input = event.input;
-    const value = event.value;
-
-    if ((value || '').trim()) {
-      this.companyDetails.keywords.push({ name: value.trim() });
-    }
-
-    // Reset the input value
-    if (input) {
-      input.value = '';
-    }
-  }
-
-  remove(keyword, chipList): void {
-    const index = this.companyDetails.keywords.indexOf(keyword);
-
-    if (index >= 0) {
-      this.companyDetails.keywords.splice(index, 1);
-    }
-
-    if (this.companyDetails.keywords.length === 0) {
-      chipList.errorState = true;
-      this.keywords_pristine = !this.keywords_pristine;
-    }
+    this.loaderService.startLoader();
+    this.signupService.registerCompany(company)
+    .subscribe(res => {
+      this.loaderService.stopLoader();
+      this.response = res;
+    });
   }
 
 }

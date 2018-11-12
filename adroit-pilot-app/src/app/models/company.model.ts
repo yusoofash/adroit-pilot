@@ -1,10 +1,10 @@
 export class Company {
     company_name: string;
-    HR: string;
+    hr: string;
     company_location: string;
     email: string;
     contact_no: number;
-    keywords: Array<Object>;
+    keywords: Array<string>;
     description: string;
     password: string;
 }

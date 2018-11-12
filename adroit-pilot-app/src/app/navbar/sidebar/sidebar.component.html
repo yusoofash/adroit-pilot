@@ -1,0 +1,21 @@
+<div class="aside" [ngClass]="{'show-sidenav': showSidebar, 'hide-sidenav': !showSidebar}">
+  <ul class="aside-links">
+    <li routerLinkActive="active">
+      <a (click)="closeSidebar()" routerLink="/home" >Home</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="closeSidebar()" routerLink="user-signup" >User signup</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="closeSidebar()" routerLink="company-signup" >Company signup</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="closeSidebar()" routerLink="user-login" >User Login</a>
+    </li>
+    <li routerLinkActive="active">
+      <a (click)="closeSidebar()" routerLink="company-login" >Company Login</a>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="showSidebar" (click)="closeSidebar()" class="mask"></div>

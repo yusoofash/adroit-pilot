@@ -1,52 +1,65 @@
-<mat-card class="user-form my-3">
-  <mat-card-title class="text-center primary text-uppercase">User Signup</mat-card-title>
-  <form #userForm="ngForm" class="d-flex flex-flow-column" (ngSubmit)="submit(userForm)">
-    <mat-form-field>
-      <input #first_name1="ngModel" name="first_name" [(ngModel)]="userDetails.first_name" matInput placeholder="First Name"
-        required>
-      <mat-error *ngIf="first_name1.invalid">
-        Name is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input #last_name1="ngModel" name="last_name" [(ngModel)]="userDetails.last_name" matInput placeholder="Last Name"
-        required>
-      <mat-error *ngIf="last_name1.invalid">
-        Name is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input #email1="ngModel" type="email" name="email" [(ngModel)]="userDetails.email" matInput placeholder="Email"
-        required email>
-      <mat-error *ngIf="email1.errors?.email && email1.invalid && email1.dirty">
-        Invalid email
-      </mat-error>
-      <mat-error *ngIf="email1.errors?.required">
-        Email is required
-      </mat-error>
-    </mat-form-field>
+<div class="my-5">
+    <form [formGroup]="userForm" (ngSubmit)="signup()" class="user-form custom-card">
+        <div class="form-group">
+            <h4 class="register-title">User Registration</h4>
+        </div>
+        <div class="form-group mt-4">
+            <label for="firstname">First Name:</label>
+            <input id="firstname" type="text" formControlName="first_name" class="form-control"
+                [ngClass]="{'is-invalid': f.first_name.errors && (f.first_name.dirty || f.first_name.touched)}">
+            <div class="invalid-feedback d-block" *ngIf="f.first_name.errors?.required && (f.first_name.dirty || f.first_name.touched)">
+                <span>*&nbsp;</span>First name is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Last Name:</label>
+            <input id="lastname" type="text" formControlName="last_name" class="form-control"
+                [ngClass]="{'is-invalid': f.last_name.errors && (f.last_name.dirty || f.last_name.touched)}">
+            <div class="invalid-feedback d-block" *ngIf="f.last_name.errors?.required && (f.last_name.dirty || f.last_name.touched)">
+                <span>*&nbsp;</span>Last name is required
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{'is-invalid': f.email.errors && (f.email.dirty || f.email.touched)}">
+            <div class="invalid-feedback d-block" *ngIf="f.email.errors?.required && (f.email.dirty || f.email.touched)">
+                <span>*&nbsp;</span>Email is required
+            </div>
+            <div class="invalid-feedback d-block" *ngIf="f.email.errors?.email && (f.email.dirty || f.email.touched)">
+                <span>*&nbsp;</span>Email is invalid
+            </div>
+        </div>
+        <div class="form-group" formGroupName="pwd">
+            <label for="password">Password:</label>
+            <input id="password" type="text" formControlName="password" class="form-control"
+                [ngClass]="{'is-invalid': f.pwd.get('password').errors && (f.pwd.get('password').dirty || f.pwd.get('password').touched)}">
+            <div class="invalid-feedback d-block" *ngIf="f.pwd.get('password').errors?.required && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
+                <span>*&nbsp;</span>Password is required
+            </div>
+            <div class="invalid-feedback d-block" *ngIf="f.pwd.get('password').errors?.minlength && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
+                <span>*&nbsp;</span>Minimum 8 characters required
+            </div>
+        </div>
+        <div class="form-group" formGroupName="pwd">
+            <label for="confirmpassword">Confirm Password:</label>
+            <input id="confirmpassword" type="text" formControlName="confirmPassword"
+                class="form-control" [ngClass]="{'is-invalid': (f.pwd.errors || f.pwd.get('confirmPassword').errors ) && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)}">
+            <div class="invalid-feedback d-block" *ngIf="f.pwd.get('confirmPassword').errors?.required && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
+                <span>*&nbsp;</span>Password is required
+            </div>
+            <div class="invalid-feedback d-block" *ngIf="f.pwd.errors?.mismatch && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
+                <span>*&nbsp;</span>Password do not match
+            </div>
+        </div>
+        <div class="form-group" *ngIf="response && response.length > 0">
+            <div class="invalid-feedback d-block">
+                <span>*&nbsp;</span>{{response}}
+            </div>
+        </div>
+        <div class="mb-1 mt-4">
+            <button class="btn btn-block btn-primary" [disabled]="userForm.invalid">Register</button>
+        </div>
+    </form>
+</div>
 
-    <mat-form-field>
-      <input name="password" [(ngModel)]="userDetails.password" matInput placeholder="Password" type="password"
-        required minlength="8" #password1="ngModel">
-      <mat-error *ngIf="password1.errors?.minlength">
-        Password must be at least 8 characters long.
-      </mat-error>
-      <mat-error *ngIf="password1.errors?.required">
-        Password is required
-      </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-      <input #confirm_password1="ngModel" name="confirm_password" [(ngModel)]="confirm_password" matInput placeholder="Confirm Password"
-        type="password" required [appConfirmEqual]="userDetails.password">
-      <mat-error *ngIf="confirm_password1.errors?.notEqual && confirm_password1 !== ''">
-        Passwords do not match
-      </mat-error>
-      <mat-error *ngIf="confirm_password1.errors?.required">
-        Password is required
-      </mat-error>
-    </mat-form-field>
-    <p class="text-capitalize text-info">{{response}}</p>
-    <button mat-raised-button color="primary" [disabled]="!userForm.form.valid">Submit</button>
-  </form>
-</mat-card>
+<app-loader></app-loader>

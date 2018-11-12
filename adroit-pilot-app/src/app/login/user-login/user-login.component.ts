@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../login.service';
+import { LoaderService } from '../../services';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,17 +10,24 @@ import { Router } from '@angular/router';
 })
 export class UserLoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private router: Router) { }
+  response: string;
+  constructor(private loginService: LoginService,
+    private loaderService: LoaderService,
+    private router: Router) { }
 
   ngOnInit() {
   }
 
   login(login_details) {
+    this.loaderService.startLoader();
     this.loginService.loginCompany(login_details)
     .subscribe(res => {
+      this.loaderService.stopLoader();
       if (res['access_token']) {
         this.loginService.setLocalStorage(res['access_token']);
         this.router.navigate(['/user-home']);
+      } else {
+        this.response = res['msg'];
       }
     });
   }
