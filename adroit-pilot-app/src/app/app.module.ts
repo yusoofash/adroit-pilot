@@ -11,11 +11,13 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { UserLoginComponent } from './login/user-login/user-login.component';
 import { CompanyLoginComponent } from './login/company-login/company-login.component';
 import { LoginTempleteComponent } from './login/login-templete/login-templete.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserPageModule } from './user-page/user-page.module';
 import { SidebarComponent } from './navbar/sidebar/sidebar.component';
-import { BlockUiComponent } from './common/block-ui/block-ui.component';
-import { LoaderComponent } from './common/loader/loader.component';
+import { BlockUiComponent, LoaderComponent } from './common';
+import { JwtInterceptor, ErrorInterceptor } from './helpers';
+import { CompanyPageModule } from './company-page/company-page.module';
+import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,7 @@ import { LoaderComponent } from './common/loader/loader.component';
     SidebarComponent,
     BlockUiComponent,
     LoaderComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,8 +42,12 @@ import { LoaderComponent } from './common/loader/loader.component';
     ReactiveFormsModule,
     AppRoutingModule,
     UserPageModule,
+    CompanyPageModule,
   ],
-  providers: [],
-bootstrap: [AppComponent]
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+  ],
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

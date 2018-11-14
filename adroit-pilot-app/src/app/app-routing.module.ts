@@ -5,8 +5,12 @@ import { CompanySignupComponent } from './signup/company-signup/company-signup.c
 import { HomepageComponent } from './homepage/homepage.component';
 import { CompanyLoginComponent } from './login/company-login/company-login.component';
 import { UserLoginComponent } from './login/user-login/user-login.component';
-import { HomeComponent } from './user-page/home/home.component';
+import { UserHomeComponent } from './user-page/home/home.component';
+import { CompanyHomeComponent } from './company-page/home/home.component';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './guards';
+import { PageNotFoundComponent } from './common';
+import { UserType } from './models';
 
 export const routes: Routes = [
   { path: '',
@@ -18,7 +22,10 @@ export const routes: Routes = [
   { path: 'home', component: HomepageComponent },
   { path: 'company-login', component: CompanyLoginComponent },
   { path: 'user-login', component: UserLoginComponent },
-  { path: 'user-home', component: HomeComponent }
+  { path: 'user-home', component: UserHomeComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },
+  { path: 'company-home', component: CompanyHomeComponent, canActivate: [AuthGuard], data: { role: UserType.COMPANY } },
+  { path: '404', component: PageNotFoundComponent },
+  { path: '**', component: PageNotFoundComponent },
 ];
 
 @NgModule({

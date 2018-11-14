@@ -25,6 +25,7 @@
 }
 .aside-links li a{
     color: white;
+    display: flex;
 }
 .mask{
     position: fixed;

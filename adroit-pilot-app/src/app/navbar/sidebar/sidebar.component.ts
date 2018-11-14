@@ -1,6 +1,6 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input } from '@angular/core';
 import { NavbarService } from '../../services';
-
+import { UserType } from '../../models';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,6 +11,8 @@ export class SidebarComponent implements OnInit {
 
   showSidebar = false;
   isDesktop = false;
+  userType = UserType;
+  @Input() currentUser;
 
   @HostListener('window:resize', ['$event'])
   onResize(event?) {

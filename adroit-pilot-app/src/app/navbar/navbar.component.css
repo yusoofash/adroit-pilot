@@ -15,3 +15,11 @@ nav {
   font-size: 20px;
   padding: 10px 20px;
 }
+button{
+  color: white;
+  background: transparent;
+  border: 1px solid white;
+}
+.logout-btn{
+  margin: 0 15px 0 auto;
+}

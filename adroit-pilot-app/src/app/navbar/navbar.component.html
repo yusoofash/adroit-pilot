@@ -1,10 +1,14 @@
-<nav>
+<nav *ngIf="display">
     <div class="hamburger cursor-pointer" (click)="displaySidebar = showSidebar()">
         <i class="fa fa-bars"></i>
     </div>
     <div class="nav-title">
         Adroit Pilot
     </div>
+    <div *ngIf="isLoggedin" (click)="logout()" class="logout-btn">
+        <button class="btn">Log out</button>
+    </div>
 </nav>
 
-<app-sidebar></app-sidebar>
+<app-sidebar
+[currentUser]="currentUser"></app-sidebar>

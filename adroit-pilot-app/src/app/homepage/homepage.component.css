@@ -1,0 +1,26 @@
+.welcome-page{
+    min-height: 50vh;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    background-image: linear-gradient(to left, #682671, #59266b, #4a2464, #3c225c, #2f2054);
+}
+.welcome-page h1{
+    font-family: 'Merriweather Sans', sans-serif;
+}
+.welcome-page h1 span{
+    white-space: nowrap;
+}
+.welcome-title{
+    color: #dadde2;
+}
+.welcome-page button{
+    color: #5c0f00;
+    background-image: linear-gradient(to right top, #c64f67, #e8715f, #fc9b58, #ffc95a, #f9f871);
+}
+.welcome-page .marker{
+    padding-top: 3px;
+    width: calc(2.5rem + 25vw);
+    background-image: linear-gradient(to right top, #c64f67, #d35965, #de6562, #e8725f, #f07f5c);
+}
