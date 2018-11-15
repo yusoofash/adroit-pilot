@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { SignupService, LoaderService } from '../../services';
+import { Router } from '@angular/router';
+import { FormBuilder, Validators, FormGroup, ValidationErrors } from '@angular/forms';
+import { SignupService, AuthenticationService, LoaderService } from '../../services';
 
 @Component({
   selector: 'app-company-signup',
@@ -13,6 +14,8 @@ export class CompanySignupComponent implements OnInit {
   response;
   companyForm: FormGroup;
   constructor(private signupService: SignupService,
+    private authService: AuthenticationService,
+    private router: Router,
     private loaderService: LoaderService,
     private fb: FormBuilder) {
     this.companyForm = this.fb.group({
@@ -24,7 +27,7 @@ export class CompanySignupComponent implements OnInit {
       }, { validator: this.passwordMatch }),
       email: ['', [Validators.required, Validators.email]],
       company_location: ['', Validators.required],
-      keywords: ['', Validators.required],
+      keywords: [[], Validators.required],
       description: ['', Validators.required],
     });
   }
@@ -34,22 +37,29 @@ export class CompanySignupComponent implements OnInit {
 
   get f() { return this.companyForm.controls; }
 
-  passwordMatch(c: FormGroup) {
+  passwordMatch(c: FormGroup): ValidationErrors | null {
     return c.get('password').value === c.get('confirmPassword').value ? null : { mismatch: true };
+  }
+
+  outputKeywords(keywords) {
+    this.f.keywords.setValue(keywords);
   }
 
   signup() {
     this.response = null;
-    const {pwd, keywords, ...company} = this.companyForm.value;
+    const {pwd, ...company} = this.companyForm.value;
     const password = this.companyForm.controls.pwd.get('password').value;
-    const keywords_arr = keywords.split(',');
-    Object.assign(company, { password: password, keywords: keywords_arr });
+    Object.assign(company, { password: password });
 
     this.loaderService.startLoader();
     this.signupService.registerCompany(company)
     .subscribe(res => {
       this.loaderService.stopLoader();
       this.response = res;
+      if (res['access_token']) {
+        this.authService.setLocalStorage(res);
+        this.router.navigate(['/company-home']);
+      }
     });
   }
 

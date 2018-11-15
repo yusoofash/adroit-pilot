@@ -7,4 +7,7 @@ export class Company {
     keywords: Array<string>;
     description: string;
     password: string;
+    constructor(value) {
+        Object.assign(this, value);
+    }
 }

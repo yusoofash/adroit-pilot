@@ -19,7 +19,7 @@ export class PageNotFoundComponent implements OnInit, OnDestroy {
   }
 
   goHome() {
-    const user = this.authService.currentUser();
+    const user = this.authService.currentUserRole();
     if (user) {
       if (user === UserType.USER) {
         this.router.navigate(['/user-home']);

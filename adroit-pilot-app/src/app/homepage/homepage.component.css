@@ -16,8 +16,8 @@
     color: #dadde2;
 }
 .welcome-page button{
-    color: #5c0f00;
-    background-image: linear-gradient(to right top, #c64f67, #e8715f, #fc9b58, #ffc95a, #f9f871);
+    color: white;
+    background-image: linear-gradient(to right top, #0073ab, #0085b7, #0096bf, #00a7c6, #00b8ca);
 }
 .welcome-page .marker{
     padding-top: 3px;

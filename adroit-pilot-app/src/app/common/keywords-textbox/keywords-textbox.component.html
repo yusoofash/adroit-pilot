@@ -1,0 +1,11 @@
+<div class="keywords-box" (click)="inputKeyword.focus()">
+  <span class="keywords" *ngIf="keywords">
+    <span class="btn btn-sm btn-primary button" *ngFor="let word of keywords">
+      {{word}} 
+      <span (click)="deleteKeyword(word)">
+          <i class="fa fa-times"></i>
+      </span>
+    </span>
+  </span>
+  <input #inputKeyword type="text" [(ngModel)]="keyword" (keyup)="addKeyword($event)">
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SignupService, LoaderService } from '../../services';
+import { Router } from '@angular/router';
+import { SignupService, LoaderService, AuthenticationService } from '../../services';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -12,8 +13,10 @@ export class UserSignupComponent implements OnInit {
   response;
   userForm: FormGroup;
   constructor(private signupService: SignupService,
-     private fb: FormBuilder,
-     private loaderService: LoaderService) {
+    private authService: AuthenticationService,
+    private fb: FormBuilder,
+    private router: Router,
+    private loaderService: LoaderService) {
     this.userForm = this.fb.group({
       first_name: ['', Validators.required],
       last_name: ['', Validators.required],
@@ -36,16 +39,20 @@ export class UserSignupComponent implements OnInit {
 
   signup() {
     this.response = null;
-    const {pwd, ...user} = this.userForm.value;
+    const { pwd, ...user } = this.userForm.value;
     const password = this.userForm.controls.pwd.get('password').value;
     Object.assign(user, { password: password });
 
     this.loaderService.startLoader();
     this.signupService.registerStudent(user)
-    .subscribe(res => {
-      this.loaderService.stopLoader();
-      this.response = res;
-    });
+      .subscribe(res => {
+        this.loaderService.stopLoader();
+        this.response = res;
+        if (res['access_token']) {
+          this.authService.setLocalStorage(res);
+          this.router.navigate(['/user-home']);
+        }
+      });
   }
 
 }

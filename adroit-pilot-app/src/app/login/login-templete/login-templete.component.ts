@@ -9,16 +9,7 @@ import { Validators, FormBuilder } from '@angular/forms';
 
 export class LoginTempleteComponent implements OnInit {
 
-  responseMsg: string;
-
-  @Input()
-  set response(value: string) {
-    this.responseMsg = value;
-  }
-
-  get response() {
-    return this.responseMsg;
-  }
+  @Input() response;
 
   loginForm = this.fb.group({
     email: [
@@ -46,7 +37,6 @@ export class LoginTempleteComponent implements OnInit {
   get f() { return this.loginForm.controls; }
 
   sigin() {
-    this.responseMsg = null;
     this.loginDetails.emit(this.loginForm.value);
   }
 
