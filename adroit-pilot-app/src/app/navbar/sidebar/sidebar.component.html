@@ -1,31 +1,31 @@
 <div class="aside" [ngClass]="{'show-sidenav': showSidebar, 'hide-sidenav': !showSidebar}">
   <ul class="aside-links" *ngIf="!currentUser">
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="/home" >Home</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/home" ><i class="fa fa-home"></i> Home</a>
     </li>
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="user-signup" >User signup</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="user-signup" ><i class="fa fa-address-book-o"></i> User signup</a>
     </li>
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="company-signup" >Company signup</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="company-signup" ><i class="fa fa-address-book-o"></i> Company signup</a>
     </li>
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="user-login" >User Login</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="user-login" ><i class="fa fa-sign-in"></i> User Login</a>
     </li>
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="company-login" >Company Login</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="company-login" ><i class="fa fa-sign-in"></i> Company Login</a>
     </li>
   </ul>
 
   <ul class="aside-links" *ngIf="currentUser === userType.USER">
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="/user-home" >Home</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/user-home" ><i class="fa fa-home"></i> Home</a>
     </li>
   </ul>
 
   <ul class="aside-links" *ngIf="currentUser === userType.COMPANY">
-    <li routerLinkActive="active">
-      <a (click)="closeSidebar()" routerLink="/company-home" >Home</a>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/company-home" ><i class="fa fa-home"></i> Home</a>
     </li>
   </ul>
 </div>

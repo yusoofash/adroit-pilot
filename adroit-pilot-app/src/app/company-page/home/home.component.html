@@ -1,3 +1,32 @@
-<h1 class="text-white">
-  home works!
-</h1>
+<form class="custom-card company-panel my-5" *ngIf="company_details" [formGroup]="companyForm">
+    <div class="form-group">
+        <label>Company Description: </label>
+        <input type="text" formControlName="description" class="form-control">
+        <div class="invalid-feedback d-block text-white" *ngIf="f.description.errors?.required && (f.description.dirty || f.description.touched)">
+            <span>*&nbsp;</span>Description is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Company Location: </label>
+        <input type="text" formControlName="company_location" class="form-control">
+        <div class="invalid-feedback d-block text-white" *ngIf="f.company_location.errors?.required && (f.company_location.dirty || f.company_location.touched)">
+            <span>*&nbsp;</span>Location is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Keywords: </label>
+        <form>
+            <app-keywords-textbox [inputKeywords]="f.keywords.value" (outputKeywords)="outputkeywords($event)"></app-keywords-textbox>
+        </form>
+        <div class="invalid-feedback d-block text-white" *ngIf="f.keywords.errors?.required && (f.keywords.dirty || f.keywords.touched)">
+            <span>*&nbsp;</span>Keywords is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <button type="button" class="btn btn-sm btn-primary" (click)="submit()" [disabled]="companyForm.invalid || companyForm.pristine">Save changes</button>
+        <button type="button" class="btn btn-sm btn-info ml-2" (click)="reset()" *ngIf="!companyForm.pristine">Reset</button>
+    </div>
+</form>

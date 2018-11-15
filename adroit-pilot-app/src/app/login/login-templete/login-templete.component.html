@@ -9,7 +9,7 @@
         <span style="color: red;">*&nbsp;</span>Email is required</div>
     </div>
     <div class="form-group">
-        <input placeholder="Password" type="text" class="form-control" formControlName="password" [ngClass]="{'is-invalid': f.password.errors?.required && (f.password.dirty || f.password.touched)}">
+        <input placeholder="Password" type="password" class="form-control" formControlName="password" [ngClass]="{'is-invalid': f.password.errors?.required && (f.password.dirty || f.password.touched)}">
         <div class="invalid-feedback d-block" 
         *ngIf="f.password.errors?.required && (f.password.dirty || f.password.touched)">
         <span style="color: red;">*&nbsp;</span>Password is required</div>

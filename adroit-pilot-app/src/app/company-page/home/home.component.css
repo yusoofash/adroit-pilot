@@ -1,0 +1,10 @@
+label{
+    color: white;
+}
+.company-panel{
+    max-width: 400px;
+    margin: auto;
+}
+span{
+    color: red;
+}

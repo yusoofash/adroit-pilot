@@ -14,10 +14,9 @@ import { LoginTempleteComponent } from './login/login-templete/login-templete.co
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { UserPageModule } from './user-page/user-page.module';
 import { SidebarComponent } from './navbar/sidebar/sidebar.component';
-import { BlockUiComponent, LoaderComponent } from './common';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { CompanyPageModule } from './company-page/company-page.module';
-import { PageNotFoundComponent } from './common/page-not-found/page-not-found.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -30,9 +29,6 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
     CompanyLoginComponent,
     LoginTempleteComponent,
     SidebarComponent,
-    BlockUiComponent,
-    LoaderComponent,
-    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +39,7 @@ import { PageNotFoundComponent } from './common/page-not-found/page-not-found.co
     AppRoutingModule,
     UserPageModule,
     CompanyPageModule,
+    SharedModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
