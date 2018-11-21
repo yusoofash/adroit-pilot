@@ -100,13 +100,17 @@ export class SettingsComponent implements OnInit {
 
   uploadImage(e) {
     const file = this.imageFile = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = (a: any) => {
-      this.f.company_thumbnail.setValue(a.target.result);
-      this.f.keywords.markAsDirty();
-      this.f.keywords.markAsTouched();
-    };
-    reader.readAsDataURL(file);
+    if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+      const reader = new FileReader();
+      reader.onload = (a: any) => {
+        this.f.company_thumbnail.setValue(a.target.result);
+        this.f.keywords.markAsDirty();
+        this.f.keywords.markAsTouched();
+      };
+      reader.readAsDataURL(file);
+    } else {
+      this.toastr.error('Invalid file type', 'Error');
+    }
 
   }
 
