@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { ResumeNamePipe } from '../user-page/home/resume-name.pipe';
 import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextboxComponent } from '../common';
 
 @NgModule({
@@ -17,7 +18,8 @@ import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextb
     LoaderComponent,
     BlockUiComponent,
     PageNotFoundComponent,
-    KeywordsTextboxComponent
+    KeywordsTextboxComponent,
+    ResumeNamePipe,
   ],
   exports: [
     FormsModule,
@@ -28,6 +30,7 @@ import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextb
     KeywordsTextboxComponent,
     BrowserAnimationsModule,
     ToastrModule,
+    ResumeNamePipe,
   ]
 })
 export class SharedModule { }

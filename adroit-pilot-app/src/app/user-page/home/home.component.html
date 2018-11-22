@@ -1,3 +1,53 @@
-<h1 class="text-white">
-  user home works!
-</h1>
+<div *ngIf="user_details" class="container my-4">
+  <h1 class="text-white text-capitalize">
+    Welcome {{user_details.first_name}}
+  </h1>
+
+  <div class="my-4" *ngIf="user_details.resume">
+    <ul>
+      <li *ngFor="let resume of user_details.resume; let i = index;" [ngClass]="{'active-resume': i===resume_index}"
+        (click)="selected_resume = resume; resume_index = i; this.new_resume = null;">
+        {{resume | resumeName}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="my-4 text-white upload-new bg-info">
+    <i class="fa fa-plus" *ngIf="!upload_new" (click)="upload_new = true; resume_index = null;">&nbsp;Upload new
+      resume</i>
+    <i class="fa fa-trash mb-4" *ngIf="upload_new" (click)="upload_new = false; resume_index = null; selected_resume = null;">&nbsp;Upload
+      new resume</i>
+    <div *ngIf="upload_new" class="input-file">
+      <div class="mb-4">
+        <input type="file" (change)="onChange($event)" class="text-white">
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="mb-4" *ngIf="!user_details.resume">
+      <input type="file" (change)="onChange($event)" class="text-white">
+    </div>
+
+    <div class="my-4">
+      <button class="btn btn-primary" (click)="predict()" [disabled]="selected_resume === null && new_resume === null">Predict</button>
+    </div>
+  </div>
+
+  <div class="my-4" *ngIf="companies">
+    <h4 class="text-white">Companies Predicted</h4>
+    <div class="text-capitalize company-container">
+      <div class="company custom-card my-3" *ngFor="let company of companies">
+        <div class="mb-3 text-center" *ngIf="company.company_thumbnail">
+          <img [src]="company.company_thumbnail" class="img-fluid rounded-circle company-thumbnail">
+        </div>
+        <div class="text-center">
+          <div class="text-white">{{company.company_name}}</div>
+          <small>{{company.company_location}}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</div>
