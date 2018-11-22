@@ -1,0 +1,46 @@
+.company-thumbnail{
+    width: 90px;
+    height: 90px;
+}
+.company{
+    width: 200px;
+    height: 200px;
+    margin-right: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+small{
+    color: lightgrey;
+}
+.company-container{
+    display: flex;
+    flex-flow: row wrap;
+}
+ul{
+    list-style: none;
+    padding-left: 0;
+    color: white;
+}
+li{
+    margin: 10px 0;
+    padding: 10px;
+    background: lightseagreen;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 80%;
+}
+.active-resume{
+    background: darkslategrey;
+    transition: all .4s ease;
+}
+.upload-new{
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+}
+.upload-new i, .upload-new .input-file{
+    display: flex;
+    padding: 14px 10px;
+}

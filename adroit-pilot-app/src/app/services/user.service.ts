@@ -42,6 +42,22 @@ export class UserService {
       );
   }
 
+  uploadResume(resume) {
+    const formData = new FormData();
+    formData.append('file', resume);
+    return this.http.post(`${environment.apiEndpoint}/user/resume`, formData)
+    .pipe(
+      catchError(this.handleError('uploadResume', [])),
+    );
+  }
+
+  getPredictions(resume_path) {
+    return this.http.post(`${environment.apiEndpoint}/user/resume/existing`, {resume_path: resume_path})
+    .pipe(
+      catchError(this.handleError('getPredictions', [])),
+    );
+  }
+
   private role_and_type() {
     const decodedToken = this.authService.getDecodedAccessToken();
     if (decodedToken) {
