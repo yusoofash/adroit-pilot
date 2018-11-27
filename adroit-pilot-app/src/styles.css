@@ -2,15 +2,17 @@
 @import "~bootstrap/dist/css/bootstrap.css";
 @import "~font-awesome/css/font-awesome.css";
 @import '~ngx-toastr/toastr.css';
-@import url('https://fonts.googleapis.com/css?family=Merriweather+Sans|Montserrat');
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
 
 html, body {
-    font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
-    background-image: linear-gradient(to right top, #051937, #1e1f4c, #3e215c, #621d66, #870b67);
+    background-color: #fafafa;
+    /* background-image: linear-gradient(to right top, #051937, #1e1f4c, #3e215c, #621d66, #870b67); */
+    /* background-image: linear-gradient(to right top, #2876cb, #2877cc, #2977cc, #2978cd, #2978cd); */
 }
 :root{
     --navbar-height: 60px;
+    --supes-blue: #2977cc;
     --navbar-width: calc(200px + 3vw);
     --navbar-hide-width: calc(-200px - 3vw);
     --bg-purple: linear-gradient(to right top, #ff78dd, #ea6bca, #d65eb7, #c251a4, #ae4492);;
@@ -38,7 +40,9 @@ html, body {
 }
 .custom-card{
     /* background-image: linear-gradient(to right top, #3c6bb1, #5e64b2, #7d5cad, #9751a2, #ae4492); */
-    background-image: linear-gradient(to right bottom, #6f1f68, #7f3685, #8e4da4, #9b64c3, #a57ce4);
-    border-radius: 5px;
-    padding: 1.3rem;
+    /* background-image: linear-gradient(to right bottom, #6f1f68, #7f3685, #8e4da4, #9b64c3, #a57ce4); */
+    background: #fff;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
 }

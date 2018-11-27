@@ -21,6 +21,12 @@
     <li>
       <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/user-home" ><i class="fa fa-home"></i> Home</a>
     </li>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/company-search" ><i class="fa fa-search"></i> Search Companies</a>
+    </li>
+    <li>
+      <a routerLinkActive="active" (click)="closeSidebar()" routerLink="/company-predict" ><i class="fa fa-building"></i> Predict Companies</a>
+    </li>
   </ul>
 
   <ul class="aside-links" *ngIf="currentUser === userType.COMPANY">

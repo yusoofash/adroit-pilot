@@ -4,10 +4,12 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    background-image: linear-gradient(to left, #682671, #59266b, #4a2464, #3c225c, #2f2054);
+    background-image: url("../../assets/banner-home.jpg");
+    background-size: cover;
+    background-position: center;
 }
-.welcome-page h1{
-    font-family: 'Merriweather Sans', sans-serif;
+.welcome-page h1 {
+    font-family: 'Montserrat', sans-serif;
 }
 .welcome-page h1 span{
     white-space: nowrap;
@@ -18,9 +20,4 @@
 .welcome-page button{
     color: white;
     background-image: linear-gradient(to right top, #0073ab, #0085b7, #0096bf, #00a7c6, #00b8ca);
-}
-.welcome-page .marker{
-    padding-top: 3px;
-    width: calc(2.5rem + 25vw);
-    background-image: linear-gradient(to right top, #c64f67, #d35965, #de6562, #e8725f, #f07f5c);
 }

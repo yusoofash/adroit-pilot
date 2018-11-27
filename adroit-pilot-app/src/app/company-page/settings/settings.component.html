@@ -1,15 +1,14 @@
 <form class="custom-card company-panel my-5" *ngIf="company_details" [formGroup]="companyForm">
     <div class="form-group">
-        <label>Thumbnail: </label>
         <div>
             <div class="thumbnail-container" *ngIf="f.company_thumbnail.value">
-                <img [src]="f.company_thumbnail.value" alt="img_thumbnail" (click)="showZoom = true" class="rounded-circle thumbnail">
+                <img [src]="f.company_thumbnail.value" alt="img_thumbnail" (click)="showZoom = true" class="thumbnail">
                 <i class="fa fa-camera thumbnail-edit">
                     <input type="file" (change)="uploadImage($event)">
                 </i>
             </div>
             <div class="img-modal" *ngIf="showZoom" (click)="showZoom = false">
-                <img [src]="f.company_thumbnail.value" alt="img_thumbnail" class="rounded-circle">
+                <img [src]="f.company_thumbnail.value" alt="img_thumbnail">
             </div>
             <div *ngIf="!f.company_thumbnail.value" style="overflow: hidden;" class="btn btn-primary btn-sm upload-img-container">
                 Upload Image

@@ -1,0 +1,39 @@
+<div class="">
+
+  <div class="d-flex">
+
+    <div class="left" [ngClass]="{'left-mb': showFilter}">
+      <span class="show-mobile times text-white" (click)="showFilter = false">&times;</span>
+      <div class="card p-3 mt-4 filter-card">
+        <div class="mb-4">
+          <label for="name">Filter name:</label>
+          <input id="name" type="text" class="form-control" [(ngModel)]="searchCompany">
+        </div>
+        <div class="mb-4">
+          <label for="location">Filter location:</label>
+          <input id="location" type="text" class="form-control" [(ngModel)]="searchLocation">
+        </div>
+        <div class="mb-4">
+          <label for="keyword">Filter keyword:</label>
+          <input id="keyword" type="text" class="form-control" [(ngModel)]="searchKeyword">
+        </div>
+        <small class="mb-4 text-secondary cursor-pointer" (click)="clearFilters()">Clear all filters</small>
+        <button class="btn btn-primary show-mobile" (click)="showFilter = false">Go!</button>
+      </div>
+    </div>
+
+    <div class="right">
+      <div class="d-flex mb-2 mt-4 align-items-center" style="justify-content: space-between;">
+          <h4>Companies</h4>
+          <small class="mr-3 show-mobile text-info cursor-pointer" (click)="showFilter = true">Add filter</small>
+      </div>
+      <div class="my-4 d-flex" style="flex-flow: row wrap; justify-content: center;">
+        <div *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer" (click)="showCompany(company)">
+          <app-simple-card *ngIf="filter(company)" [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

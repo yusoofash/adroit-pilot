@@ -3,8 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
-import { ResumeNamePipe } from '../user-page/home/resume-name.pipe';
+import { ResumeNamePipe } from '../user-page/company-predict/resume-name.pipe';
 import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextboxComponent } from '../common';
+import { AppRoutingModule } from '../app-routing.module';
+import { SimpleCardComponent } from '../common';
+import { CompanyPageComponent } from '../user-page/company-page/company-page.component';
 
 @NgModule({
   imports: [
@@ -13,6 +16,7 @@ import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextb
     ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    AppRoutingModule,
   ],
   declarations: [
     LoaderComponent,
@@ -20,6 +24,8 @@ import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextb
     PageNotFoundComponent,
     KeywordsTextboxComponent,
     ResumeNamePipe,
+    SimpleCardComponent,
+    CompanyPageComponent,
   ],
   exports: [
     FormsModule,
@@ -31,6 +37,9 @@ import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextb
     BrowserAnimationsModule,
     ToastrModule,
     ResumeNamePipe,
+    AppRoutingModule,
+    SimpleCardComponent,
+    CompanyPageComponent,
   ]
 })
 export class SharedModule { }

@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="card d-flex p-4" *ngIf="c">
+    <img *ngIf="c.company_thumbnail" [src]="c.company_thumbnail" class="img-fluid mr-4 my-4" style="width:150px;">
+    <div style="max-width: 220px;" class="my-4">
+      <div class="text-capitalize mb-2">
+        <span>Name:</span> {{c.company_name}}
+      </div>
+      <div class="text-capitalize mb-2">
+        <span>Keywords:</span> {{c.keywords}}
+      </div>
+      <div class="text-capitalize mb-2">
+        <span>E-mail:</span> {{c.email}}
+      </div>
+      <div class="text-capitalize mb-2">
+        <span>HR:</span> {{c.hr}}
+      </div>
+      <div class="text-capitalize mb-2">
+        <span>Description:</span> {{c.description}}
+      </div>
+      <div>
+        <span>Location:</span> {{c.company_location}}
+      </div>
+    </div>
+  </div>
+</div>

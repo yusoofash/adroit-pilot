@@ -1,0 +1,9 @@
+<div style="width: 12rem; height: 250px;" class="card"> 
+  <img class="card-img-top" *ngIf="details.thumbnail" [src]="details.thumbnail">
+  <div class="card-body text-capitalize text-center d-flex flex-flow-column justify-content-center">
+    <h5 class="card-title">{{details.title}}</h5>
+    <p class="card-text">
+      <small>{{details.text}}</small>
+    </p>
+  </div>
+</div>

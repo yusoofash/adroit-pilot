@@ -4,18 +4,14 @@
     height: 330px;
     display: flex;
     flex-flow: column;
+    padding: 1em;
 }
 .is-invalid {
     border: 2px solid var(--danger);
 }
-.is-invalid, .invalid-feedback {
-    color: white;
-}
+
 .form-group {
     margin-bottom: 1.4rem;
-}
-.login-title, button{
-    font-family: 'Merriweather Sans', sans-serif;
 }
 .btn.disabled, .btn:disabled {
     opacity: 1;

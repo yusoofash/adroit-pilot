@@ -1,0 +1,10 @@
+.card{
+    flex-flow: row wrap;
+    max-width: 450px;
+    justify-content: space-around;
+    align-items: center;
+    margin: 60px auto;
+}
+span{
+    color: var(--info);
+}

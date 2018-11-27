@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { catchError, map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -15,10 +16,11 @@ export class UserService {
 
   constructor(
     private http: HttpClient,
+    private router: Router,
     private authService: AuthenticationService) { }
 
   updateDetails(detail) {
-    const {role, id} = this.role_and_type();
+    const { role, id } = this.role_and_type();
     console.log(id);
     return this.http.put(`${environment.apiEndpoint}/${role}/${id}`, detail)
       .pipe(
@@ -31,7 +33,7 @@ export class UserService {
   }
 
   getDetails() {
-    const {role, id} = this.role_and_type();
+    const { role, id } = this.role_and_type();
     return this.http.get(`${environment.apiEndpoint}/${role}/${id}`)
       .pipe(
         catchError(this.handleError('getDetails', [])),
@@ -42,20 +44,37 @@ export class UserService {
       );
   }
 
+  getCompanies(): Observable<Company[]> {
+    return this.http.get<Company[]>(`${environment.apiEndpoint}/companies`)
+      .pipe(
+        catchError(this.handleError('getCompanies', []))
+      );
+  }
+
+  getCompanyById(id: string) {
+    return this.http.get<Company>(`${environment.apiEndpoint}/company/${id}`)
+      .pipe(
+        catchError(err => {
+          this.router.navigate(['/404']);
+          return of(err);
+        })
+      );
+  }
+
   uploadResume(resume) {
     const formData = new FormData();
     formData.append('file', resume);
     return this.http.post(`${environment.apiEndpoint}/user/resume`, formData)
-    .pipe(
-      catchError(this.handleError('uploadResume', [])),
-    );
+      .pipe(
+        catchError(this.handleError('uploadResume', [])),
+      );
   }
 
   getPredictions(resume_path) {
-    return this.http.post(`${environment.apiEndpoint}/user/resume/existing`, {resume_path: resume_path})
-    .pipe(
-      catchError(this.handleError('getPredictions', [])),
-    );
+    return this.http.post(`${environment.apiEndpoint}/user/resume/existing`, { resume_path: resume_path })
+      .pipe(
+        catchError(this.handleError('getPredictions', [])),
+      );
   }
 
   private role_and_type() {
@@ -63,7 +82,7 @@ export class UserService {
     if (decodedToken) {
       const role = decodedToken.roles;
       const id = decodedToken.sub;
-      return {role, id};
+      return { role, id };
     }
     return null;
   }

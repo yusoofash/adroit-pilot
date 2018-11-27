@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
 import { UserSignupComponent } from './signup/user-signup/user-signup.component';
 import { CompanySignupComponent } from './signup/company-signup/company-signup.component';
 import { HomepageComponent } from './homepage/homepage.component';
@@ -36,7 +35,6 @@ import { SharedModule } from './shared/shared.module';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    AppRoutingModule,
     UserPageModule,
     CompanyPageModule,
     SharedModule,

@@ -1,46 +1,25 @@
-.company-thumbnail{
-    width: 90px;
-    height: 90px;
+.banner{
+    background-image: linear-gradient(to right, #523d82, #883883, #b63075, #d8365a, #e85136);
+    height: 60vh;
 }
-.company{
-    width: 200px;
-    height: 200px;
-    margin-right: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-flow: column;
+.sub-banner{
+    max-height: 300px;
+    min-height: 100px;
 }
-small{
-    color: lightgrey;
+.btn-user-stack{
+    flex-flow: row;
 }
-.company-container{
-    display: flex;
-    flex-flow: row wrap;
+.btn-user-stack button{
+    max-width: 100px;
 }
-ul{
-    list-style: none;
-    padding-left: 0;
-    color: white;
-}
-li{
-    margin: 10px 0;
-    padding: 10px;
-    background: lightseagreen;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 80%;
-}
-.active-resume{
-    background: darkslategrey;
-    transition: all .4s ease;
-}
-.upload-new{
-    border-radius: 5px;
-    display: inline-block;
-    cursor: pointer;
-}
-.upload-new i, .upload-new .input-file{
-    display: flex;
-    padding: 14px 10px;
+@media only screen and (max-width: 700px){
+    .banner{
+        height: 100vh;
+    }
+    .btn-user-stack{
+        flex-flow: column;
+    }
+    .btn-user-stack .btn:first-child{
+        margin-bottom: 10px;
+    }
 }

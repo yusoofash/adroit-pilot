@@ -7,7 +7,8 @@ nav {
   display: flex;
   color: white;
   align-items: center;
-  background-image: linear-gradient(to right, #352057, #45205d, #551e62, #671a66, #781267);
+  /* background-image: linear-gradient(to right, #352057, #45205d, #551e62, #671a66, #781267); */
+  background-image: linear-gradient(to right top, #2876cb, #2877cc, #2977cc, #2978cd, #2978cd);
   z-index: 500;
   box-shadow: 0 2px 5px 0 rgba(0,0,0,.3);
 }

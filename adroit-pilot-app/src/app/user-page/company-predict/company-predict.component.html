@@ -1,0 +1,41 @@
+<div class="my-4 container" *ngIf="user_details">
+  <h2 class="text-capitalize py-3">
+    Predict companies using CV
+  </h2>
+  <div class="my-4" *ngIf="user_details.resume">
+    <ul>
+      <li *ngFor="let resume of user_details.resume; let i = index;" [ngClass]="{'active-resume': i===resume_index}"
+        (click)="selected_resume = resume; resume_index = i; this.new_resume = null;">
+        {{resume | resumeName}}
+      </li>
+    </ul>
+  </div>
+
+  <div class="mt-4 text-white upload-new bg-primary">
+    <i class="fa fa-plus" *ngIf="!upload_new" (click)="upload_new = true; resume_index = null;">&nbsp;Upload new
+      resume</i>
+    <i class="fa fa-trash mb-4" *ngIf="upload_new" (click)="upload_new = false; resume_index = null; selected_resume = null;">&nbsp;Upload
+      new resume</i>
+    <div *ngIf="upload_new" class="input-file">
+      <div class="mb-4">
+        <input type="file" (change)="onChange($event)" class="text-white">
+      </div>
+    </div>
+  </div>
+
+  <div class="my-4">
+    <div class="mb-4">
+      <button class="btn btn-primary" (click)="predict()" [disabled]="selected_resume === null && new_resume === null">Predict</button>
+    </div>
+  </div>
+
+  <div class="my-4 mt-5" *ngIf="companies">
+    <h4>Companies Predicted</h4>
+    <div class="text-capitalize company-container">
+      <div class="my-3 mr-3" *ngFor="let company of companies">
+          <app-simple-card
+          [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+      </div>
+    </div>
+  </div>
+</div>
