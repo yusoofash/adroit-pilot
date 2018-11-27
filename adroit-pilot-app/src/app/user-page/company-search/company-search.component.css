@@ -44,4 +44,7 @@
     .show-mobile{
         display: block;
     }
+    .company-lists{
+        justify-content: center;
+    }
 }

@@ -3,7 +3,7 @@
   <div class="d-flex">
 
     <div class="left" [ngClass]="{'left-mb': showFilter}">
-      <span class="show-mobile times text-white" (click)="showFilter = false">&times;</span>
+      <span class="show-mobile times text-white cursor-pointer" (click)="showFilter = false">&times;</span>
       <div class="card p-3 mt-4 filter-card">
         <div class="mb-4">
           <label for="name">Filter name:</label>
@@ -27,7 +27,7 @@
           <h4>Companies</h4>
           <small class="mr-3 show-mobile text-info cursor-pointer" (click)="showFilter = true">Add filter</small>
       </div>
-      <div class="my-4 d-flex" style="flex-flow: row wrap; justify-content: center;">
+      <div class="my-4 d-flex company-lists" style="flex-flow: row wrap;">
         <div *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer" (click)="showCompany(company)">
           <app-simple-card *ngIf="filter(company)" [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
         </div>
