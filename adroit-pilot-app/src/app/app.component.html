@@ -1,5 +1,10 @@
 <app-navbar></app-navbar>
-<div style="padding-top: var(--navbar-height);" class="main-content" [ngClass]="{'navbar-open': isSidebarOpen}">
-    <router-outlet></router-outlet>
+<div [ngClass]="{'navbar-open': isSidebarOpen}" class="main-content d-flex flex-flow-column">
+    <div style="flex: 1;">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="footer">
+        &copy; Copyright. All rights reserved.
+    </div>
 </div>
 <app-loader></app-loader>

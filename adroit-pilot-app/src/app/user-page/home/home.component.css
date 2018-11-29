@@ -1,6 +1,6 @@
 .banner{
     background-image: linear-gradient(to right, #523d82, #883883, #b63075, #d8365a, #e85136);
-    height: 60vh;
+    min-height: var(--full-height);
 }
 .sub-banner{
     max-height: 300px;
@@ -12,14 +12,22 @@
 .btn-user-stack button{
     max-width: 100px;
 }
+.btn{
+    width: 120px;
+}
+.text-container{
+    width: 70%;
+    padding-right: 5%;
+}
 @media only screen and (max-width: 700px){
-    .banner{
-        height: 100vh;
-    }
     .btn-user-stack{
         flex-flow: column;
     }
     .btn-user-stack .btn:first-child{
         margin-bottom: 10px;
+    }
+    .text-container{
+        width: 80%;
+        padding-right: 0;
     }
 }

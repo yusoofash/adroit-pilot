@@ -20,7 +20,7 @@ ul{
     color: white;
 }
 li{
-    margin: 10px 0;
+    margin: 14px 0;
     padding: 10px;
     background: white;
     border-radius: 5px;
@@ -30,7 +30,7 @@ li{
     border: 1px solid lightgrey;
 }
 .active-resume{
-    background: darkslategrey;
+    background: #628281;
     transition: all .4s ease;
     color: white;
 }
@@ -42,4 +42,9 @@ li{
 .upload-new i, .upload-new .input-file{
     display: flex;
     padding: 14px 10px;
+}
+@media only screen and (max-width: 700px) {
+    .company-container{
+        justify-content: center;
+    }
 }

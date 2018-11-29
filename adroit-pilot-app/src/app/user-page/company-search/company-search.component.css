@@ -1,14 +1,16 @@
 .left{
     margin-right: 5%;
     background: rgba(0,0,0,0.1);
-    height: 100vh;
     transform: translateX(0);
     width: calc(200px + 2vw);
     box-shadow: 2px 0 2px rgba(0,0,0,0.1);
     transition: all .3s ease;
 }
 .filter-card{
-    width: 80%; margin: auto; min-width: 12rem;background-color: rgba(0,0,0,0.1); border:0;
+    width: 80%; margin: auto 15px; 
+    min-width: 12rem;
+    background-color: rgba(0,0,0,0.1); 
+    border:0;
 }
 .right{
     margin-left: 5%;

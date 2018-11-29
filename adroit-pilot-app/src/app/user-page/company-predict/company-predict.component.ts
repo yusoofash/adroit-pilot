@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService, LoaderService } from '../../services';
+import { Company } from '../../models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-company-predict',
@@ -16,6 +18,7 @@ export class CompanyPredictComponent implements OnInit {
   upload_new = false;
 
   constructor(private userDetails: UserService,
+    private router: Router,
     private loaderService: LoaderService) {
     this.getUserDetails();
   }
@@ -54,5 +57,10 @@ export class CompanyPredictComponent implements OnInit {
     }
   }
 
+  showCompany(company: Company) {
+    const companyId = company ? company['_id'].$oid : null;
+
+    this.router.navigate(['company', companyId]);
+  }
 
 }

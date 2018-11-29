@@ -1,5 +1,5 @@
 .welcome-page{
-    min-height: 50vh;
+    min-height: 60vh;
     display: flex;
     flex-flow: column;
     justify-content: center;
@@ -20,4 +20,11 @@
 .welcome-page button{
     color: white;
     background-image: linear-gradient(to right top, #0073ab, #0085b7, #0096bf, #00a7c6, #00b8ca);
+}
+.card-img-top{
+    height: 200px;
+}
+.card-preview{
+    width: 16rem; height: 350px;
+    margin: 1.5rem 0.5rem;
 }

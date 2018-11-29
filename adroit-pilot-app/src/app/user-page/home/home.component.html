@@ -1,12 +1,14 @@
 <div *ngIf="user_details" class="">
-  <div class="banner">
-    <h2 class="text-capitalize text-center text-white p-3">
+  <div class="banner py-3">
+    <h1 class="text-capitalize text-center text-white p-2 responsive-h1">
         Welcome {{user_details.first_name}}!
-    </h2>
+    </h1>
       <div class="d-flex align-items-center text-white justify-content-center" style="padding: 10px 10%; height: 70%;">
-          <div style="width: 60%;">
-            <h2>Get a job now! </h2>
-            <div class="my-4">Search companies and apply to your dream job. Not sure which company to join? Use our company predictor!</div>
+          <div class="text-container">
+            <div class="my-4" style="line-height: 1.7rem;">
+              <h2 class="pb-2">Get a job now! </h2>
+              Search companies and apply to your dream job. Not sure which company to join? Use our company predictor!
+            </div>
             <div class="btn-user-stack d-flex">
               <a [routerLink]="['/company-search']" class="btn btn-primary mr-3">Search</a>
               <a [routerLink]="['/company-predict']" class="btn btn-info">Predict</a>

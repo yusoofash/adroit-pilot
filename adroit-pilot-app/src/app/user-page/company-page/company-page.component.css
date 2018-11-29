@@ -1,10 +1,21 @@
 .card{
     flex-flow: row wrap;
-    max-width: 450px;
+    max-width: 550px;
     justify-content: space-around;
     align-items: center;
     margin: 60px auto;
 }
+.company-details{
+    max-width: 330px;
+}
 span{
     color: var(--info);
+}
+.btn {
+    width: 120px;
+}
+@media only screen and (max-width: 700px){
+    .company-details{
+        max-width: 280px;
+    }
 }
