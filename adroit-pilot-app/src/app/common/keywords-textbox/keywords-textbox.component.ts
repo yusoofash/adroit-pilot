@@ -31,10 +31,11 @@ export class KeywordsTextboxComponent implements OnInit {
       this.keyword = null;
     } else if (this.keywords.includes(keyword)) {
       this.keyword = null;
-    } else if ((currentLetter === ',' || currentLetter === ' ' || e.keyCode === 13) && keyword.length > 0 ) {
+    } else if ((currentLetter === ',' || e.keyCode === 13) && keyword.length > 0 ) {
       this.keywords.push(keyword);
       this.keyword = null;
     }
+
     this.outputKeywords.emit(this.keywords);
   }
 

@@ -35,8 +35,8 @@ export class CompanySearchComponent implements OnInit {
   filter(company: Company) {
     if (this.searchCompany.length === 0 && this.searchLocation.length === 0 && this.searchKeyword.length === 0) {
       return true;
-    } else if ((company.company_name.includes(this.searchCompany) || this.searchCompany.length === 0) &&
-      (company.company_location.includes(this.searchLocation) || this.searchLocation.length === 0) &&
+    } else if ((company.company_name.toLowerCase().includes(this.searchCompany.toLowerCase()) || this.searchCompany.length === 0) &&
+      (company.company_location.toLowerCase().includes(this.searchLocation.toLowerCase()) || this.searchLocation.length === 0) &&
       (this.filterKeywords(company.keywords) || this.searchKeyword.length === 0)) {
       return true;
     } else {
@@ -46,7 +46,7 @@ export class CompanySearchComponent implements OnInit {
 
   filterKeywords(keywords: Array<string>) {
     return keywords.some(keyword => {
-      return keyword.includes(this.searchKeyword);
+      return keyword.toLowerCase().includes(this.searchKeyword.toLowerCase());
     });
   }
 

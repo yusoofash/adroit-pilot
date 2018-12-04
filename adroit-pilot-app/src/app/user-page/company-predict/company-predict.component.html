@@ -32,13 +32,22 @@
     </div>
   </div>
 
-  <div class="my-4 mt-5" *ngIf="companies">
-    <h4>Companies Predicted</h4>
-    <div class="text-capitalize company-container">
-      <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
-          <app-simple-card
-          [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+  <div *ngIf="companies">
+    <div class="my-4 mt-5" *ngIf="companies.length > 0">
+      <h4>Companies Predicted</h4>
+      <div class="text-capitalize company-container">
+        <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
+            <app-simple-card
+            [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+        </div>
+      </div>
+    </div>
+  
+    <div class="my-4 mt-5" *ngIf="companies.length === 0">
+      <div class="alert alert-danger">
+        No companies matching your CV
       </div>
     </div>
   </div>
+
 </div>
