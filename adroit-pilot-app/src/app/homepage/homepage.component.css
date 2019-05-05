@@ -23,8 +23,39 @@
 }
 .card-img-top{
     height: 200px;
+    object-fit: contain;
 }
 .card-preview{
-    width: 16rem; height: 350px;
+    width: calc(5vw + 250px); height: 350px;
     margin: 1.5rem 0.5rem;
 }
+.parallax-bg {
+    background: rgba(1,1,1,0.5);
+    color: white;
+    padding: 20px;
+    width: calc(300px + 5vw);
+    background: rgba(0,0,0,0.5);
+    position: relative;
+    left: 30px;
+    top: 30px;
+}
+
+.parallax-container {
+    height: 500px;
+    background-size: cover;
+    max-width: 100%;
+}
+
+@media only screen and (max-width: 700px) {
+    .parallax-bg {
+        color: black;
+        border: 1px solid #eee;
+        background-color: white;
+        position: relative;
+        top: 60px;
+    }
+    .parallax-container {
+        height: 550px;
+    }
+}
+
