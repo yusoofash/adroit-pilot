@@ -10,6 +10,7 @@ import { CompanySearchComponent } from './user-page/company-search/company-searc
 import { CompanyPredictComponent } from './user-page/company-predict/company-predict.component';
 import { CompanyHomeComponent } from './company-page/home/home.component';
 import { SettingsComponent } from './company-page/settings/settings.component';
+import { UserSearchComponent } from './company-page/user-search/user-search.component';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthGuard } from './guards';
 import { PageNotFoundComponent } from './common';
@@ -32,6 +33,7 @@ export const routes: Routes = [
   { path: 'company-predict', component: CompanyPredictComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },
   { path: 'company-home', component: CompanyHomeComponent, canActivate: [AuthGuard], data: { role: UserType.COMPANY } },
   { path: 'company-settings', component: SettingsComponent, canActivate: [AuthGuard], data: { role: UserType.COMPANY } },
+  { path: 'search-users', component: UserSearchComponent },
   { path: '404', component: PageNotFoundComponent },
   { path: '**', component: PageNotFoundComponent },
 ];

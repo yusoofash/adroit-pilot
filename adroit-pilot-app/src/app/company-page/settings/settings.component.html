@@ -10,7 +10,8 @@
             <div class="img-modal" *ngIf="showZoom" (click)="showZoom = false">
                 <img [src]="f.company_thumbnail.value" alt="img_thumbnail">
             </div>
-            <div *ngIf="!f.company_thumbnail.value" style="overflow: hidden;" class="btn btn-primary btn-sm upload-img-container">
+            <div *ngIf="!f.company_thumbnail.value" style="overflow: hidden;"
+                class="btn btn-primary btn-sm upload-img-container">
                 Upload Image
                 <input type="file" (change)="uploadImage($event)">
             </div>
@@ -19,7 +20,8 @@
     <div class="form-group">
         <label>Description: </label>
         <input type="text" formControlName="description" class="form-control">
-        <div class="invalid-feedback d-block text-white" *ngIf="f.description.errors?.required && (f.description.dirty || f.description.touched)">
+        <div class="invalid-feedback d-block text-white"
+            *ngIf="f.description.errors?.required && (f.description.dirty || f.description.touched)">
             <span>*&nbsp;</span>Description is required
         </div>
     </div>
@@ -27,24 +29,47 @@
     <div class="form-group">
         <label>Location: </label>
         <input type="text" formControlName="company_location" class="form-control">
-        <div class="invalid-feedback d-block text-white" *ngIf="f.company_location.errors?.required && (f.company_location.dirty || f.company_location.touched)">
+        <div class="invalid-feedback d-block text-white"
+            *ngIf="f.company_location.errors?.required && (f.company_location.dirty || f.company_location.touched)">
             <span>*&nbsp;</span>Location is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Salary: </label>
+        <input type="text" formControlName="company_salary" class="form-control">
+        <div class="invalid-feedback d-block text-white"
+            *ngIf="f.company_salary.errors?.required && (f.company_salary.dirty || f.company_salary.touched)">
+            <span>*&nbsp;</span>Salary is required
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label>Experience: </label>
+        <input type="text" formControlName="company_experience" class="form-control">
+        <div class="invalid-feedback d-block text-white"
+            *ngIf="f.company_experience.errors?.required && (f.company_experience.dirty || f.company_experience.touched)">
+            <span>*&nbsp;</span>Experience is required
         </div>
     </div>
 
     <div class="form-group">
         <label>Keywords: </label>
         <form>
-            <app-keywords-textbox [inputKeywords]="f.keywords.value" (outputKeywords)="outputkeywords($event)"></app-keywords-textbox>
+            <app-keywords-textbox [inputKeywords]="f.keywords.value" (outputKeywords)="outputkeywords($event)">
+            </app-keywords-textbox>
         </form>
-        <div class="invalid-feedback d-block text-white" *ngIf="f.keywords.errors?.required && (f.keywords.dirty || f.keywords.touched)">
+        <div class="invalid-feedback d-block text-white"
+            *ngIf="f.keywords.errors?.required && (f.keywords.dirty || f.keywords.touched)">
             <span>*&nbsp;</span>Keywords is required
         </div>
     </div>
 
     <div class="form-group">
-        <button type="button" class="btn btn-sm btn-primary" (click)="submit()" [disabled]="companyForm.invalid || companyForm.pristine">Save
+        <button type="button" class="btn btn-sm btn-primary" (click)="submit()"
+            [disabled]="companyForm.invalid || companyForm.pristine">Save
             changes</button>
-        <button type="button" class="btn btn-sm btn-info ml-2" (click)="reset()" *ngIf="!companyForm.pristine">Reset</button>
+        <button type="button" class="btn btn-sm btn-info ml-2" (click)="reset()"
+            *ngIf="!companyForm.pristine">Reset</button>
     </div>
 </form>

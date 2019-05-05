@@ -1,0 +1,15 @@
+<div class="p-3">
+  <h1>Search Users</h1>
+  <div class="py-3">
+    {{user_search}}
+    <input type="text" (keyup)="search_query($event)" class="form-control" style="max-width: 300px" placeholder="Enter Keywords">
+  </div>
+  <div class="my-2 card-col" *ngIf="user_details.length > 0">
+    <div class="p-3 my-3 card mx-2" *ngFor="let user of user_details">
+      <h3 class="text-uppercase text-center pb-2">{{user.first_name}} {{user.last_name}}</h3><br><br>
+      <strong>Email: </strong> {{user.email}}
+      <span class="text-capitalize mt-2" *ngIf="user.keywords"><strong>Skills: </strong> {{user.keywords.join(", ")}}</span><br>
+      
+    </div>
+  </div>
+</div>

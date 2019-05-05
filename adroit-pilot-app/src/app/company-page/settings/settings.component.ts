@@ -41,6 +41,8 @@ export class SettingsComponent implements OnInit {
       keywords: ['', Validators.required],
       description: ['', Validators.required],
       company_location: ['', Validators.required],
+      company_salary: ['', Validators.required],
+      company_experience: ['', Validators.required],
       company_thumbnail: ['']
     });
     this.loaderService.startLoader();
@@ -48,8 +50,9 @@ export class SettingsComponent implements OnInit {
   }
 
   patchValue() {
-    const { keywords, description, company_location, company_thumbnail } = JSON.parse(JSON.stringify(this.company_details));
-    this.companyForm.patchValue({ keywords, description, company_location, company_thumbnail });
+    const { keywords, description, company_location, company_thumbnail, company_salary, company_experience } =
+    JSON.parse(JSON.stringify(this.company_details));
+    this.companyForm.patchValue({ keywords, description, company_location, company_thumbnail, company_salary, company_experience });
   }
 
   get f() { return this.companyForm.controls; }

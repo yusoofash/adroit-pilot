@@ -52,6 +52,7 @@ export class CompanyPredictComponent implements OnInit {
         this.userDetails.getPredictions(this.selected_resume).subscribe(res => {
           this.loaderService.stopLoader();
           this.companies = res;
+          console.log('predicted companies', res);
         });
       }
     }
