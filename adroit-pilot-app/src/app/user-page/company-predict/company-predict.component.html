@@ -35,6 +35,18 @@
   <div *ngIf="companies">
     <div class="my-4 mt-5" *ngIf="companies.length > 0">
       <h4>Companies Predicted</h4>
+      <div class="p-3 card mt-4" style="max-width: 450px">
+        <p><strong>Filter</strong></p>
+        <div class="mb-2">
+            Experience:
+            <input type="text" [(ngModel)]="experience" (keyup)="filter_companies($event)" placeholder="Enter Experience" class="form-control">
+          </div>
+        <div>
+          Salary (LPA):
+          <ng5-slider [(value)]="salary" [options]="options" (valueChange)="filter_companies($event)"></ng5-slider>
+        </div>
+        <small class="cursor-pointer text-secondary font-weight-bold mt-2" (click)="clear_filter()">Clear Filter</small>
+      </div>
       <div class="text-capitalize company-container">
         <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
             <app-simple-card
@@ -50,4 +62,9 @@
     </div>
   </div>
 
+</div>
+
+<div [ngClass]="{'predict-load': load_start, 'd-none': !load_start}">
+  <img src="assets/source.gif" alt="">
+  <p>Please Wait..</p>
 </div>

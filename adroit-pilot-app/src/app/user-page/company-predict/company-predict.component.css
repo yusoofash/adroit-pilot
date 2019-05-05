@@ -43,6 +43,23 @@ li{
     display: flex;
     padding: 14px 10px;
 }
+.predict-load {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-flow: column;
+}
+.predict-load img {
+    width: 100%;
+    max-width: 500px;
+    object-fit: contain;
+}
 @media only screen and (max-width: 700px) {
     .company-container{
         justify-content: center;

@@ -61,17 +61,17 @@ export class UserService {
       );
   }
 
-  uploadResume(resume) {
+  uploadResume(resume): Observable<Company[]> {
     const formData = new FormData();
     formData.append('file', resume);
-    return this.http.post(`${environment.apiEndpoint}/user/resume`, formData)
+    return this.http.post<Company[]>(`${environment.apiEndpoint}/user/resume`, formData)
       .pipe(
         catchError(this.handleError('uploadResume', [])),
       );
   }
 
-  getPredictions(resume_path) {
-    return this.http.post(`${environment.apiEndpoint}/user/resume/existing`, { resume_path: resume_path })
+  getPredictions(resume_path): Observable<Company[]> {
+    return this.http.post<Company[]>(`${environment.apiEndpoint}/user/resume/existing`, { resume_path: resume_path })
       .pipe(
         catchError(this.handleError('getPredictions', [])),
       );

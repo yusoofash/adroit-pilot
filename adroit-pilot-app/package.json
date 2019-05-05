@@ -28,12 +28,13 @@
     "font-awesome": "^4.7.0",
     "jwt-decode": "^2.2.0",
     "ng2-parallaxscroll": "^2.0.4",
+    "ng5-slider": "^1.1.14",
     "ngx-toastr": "^9.1.1",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.7.0",
+    "@angular-devkit/build-angular": "^0.13.8",
     "@angular/cli": "~6.1.2",
     "@angular/compiler-cli": "^6.1.0",
     "@angular/language-service": "^6.1.0",

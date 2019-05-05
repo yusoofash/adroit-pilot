@@ -6,6 +6,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { ResumeNamePipe } from '../user-page/company-predict/resume-name.pipe';
 import { LoaderComponent, BlockUiComponent, PageNotFoundComponent, KeywordsTextboxComponent } from '../common';
 import { AppRoutingModule } from '../app-routing.module';
+import { Ng5SliderModule } from 'ng5-slider';
 import { SimpleCardComponent } from '../common';
 import { CompanyPageComponent } from '../user-page/company-page/company-page.component';
 
@@ -17,6 +18,7 @@ import { CompanyPageComponent } from '../user-page/company-page/company-page.com
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
     AppRoutingModule,
+    Ng5SliderModule,
   ],
   declarations: [
     LoaderComponent,
@@ -30,6 +32,7 @@ import { CompanyPageComponent } from '../user-page/company-page/company-page.com
   exports: [
     FormsModule,
     ReactiveFormsModule,
+    Ng5SliderModule,
     LoaderComponent,
     BlockUiComponent,
     PageNotFoundComponent,
