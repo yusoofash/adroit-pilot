@@ -1,93 +1,114 @@
-<div class="my-5">
-    <form [formGroup]="companyForm" (ngSubmit)="signup()" class="register-form custom-card">
-        <div class="form-group">
-            <h4 class="blockquote-custom">Company Registration</h4>
-        </div>
-        <div class="row mt-4">
-            <div class="form-group col-md">
-                <label for="companyname">Company Name:</label>
-                <input id="companyname" type="text" formControlName="company_name" class="form-control" [ngClass]="{'is-invalid': f.company_name.errors && (f.company_name.dirty || f.company_name.touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.company_name.errors?.required && (f.company_name.dirty || f.company_name.touched)">
-                    <span>*&nbsp;</span>Company name is required
+<div style="background-image: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);height: 100vh">
+    <div class="py-5" style="background-image: url(/assets/userlogin.png);
+background-repeat: no-repeat;
+background-size: contain;
+background-position: right;">
+        <form [formGroup]="companyForm" (ngSubmit)="signup()" class="register-form custom-card"
+            style="background: rgba(234,234,234,0.4)">
+            <div class="form-group">
+                <h4 class="blockquote-custom">Company Registration</h4>
+            </div>
+            <div class="row mt-4">
+                <div class="form-group col-md">
+                    <label for="companyname">Company Name:</label>
+                    <input id="companyname" type="text" formControlName="company_name" class="form-control"
+                        [ngClass]="{'is-invalid': f.company_name.errors && (f.company_name.dirty || f.company_name.touched)}">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.company_name.errors?.required && (f.company_name.dirty || f.company_name.touched)">
+                        <span>*&nbsp;</span>Company name is required
+                    </div>
+                </div>
+
+                <div class="form-group col-md">
+                    <label for="companylocation">Company Location:</label>
+                    <input id="companylocation" type="text" formControlName="company_location" class="form-control"
+                        [ngClass]="{'is-invalid': f.company_location.errors && (f.company_location.dirty || f.company_location.touched)}">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.company_location.errors?.required && (f.company_location.dirty || f.company_location.touched)">
+                        <span>*&nbsp;</span>Company location is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="description">Company Description:</label>
+                <input id="description" type="text" formControlName="description" class="form-control"
+                    [ngClass]="{'is-invalid': f.description.errors && (f.description.dirty || f.description.touched)}">
+                <div class="invalid-feedback d-block"
+                    *ngIf="f.description.errors?.required && (f.description.dirty || f.description.touched)">
+                    <span>*&nbsp;</span>Company Description is required
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="keywords">Keywords: <small>(Comma separated)</small></label>
+                <!-- <textarea id="keywords" type="text" formControlName="keywords" class="form-control" [ngClass]="{'is-invalid': f.keywords.errors && (f.keywords.dirty || f.keywords.touched)}"></textarea> -->
+                <form>
+                    <app-keywords-textbox (outputKeywords)="outputKeywords($event)"></app-keywords-textbox>
+                </form>
+                <div class="invalid-feedback d-block"
+                    *ngIf="f.keywords.errors?.required && (f.keywords.dirty || f.keywords.touched)">
+                    <span>*&nbsp;</span>Keywords is required
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md">
+                    <label for="hr">HR:</label>
+                    <input id="hr" type="text" formControlName="hr" class="form-control"
+                        [ngClass]="{'is-invalid': f.hr.errors && (f.hr.dirty || f.hr.touched)}">
+                    <div class="invalid-feedback d-block" *ngIf="f.hr.errors?.required && (f.hr.dirty || f.hr.touched)">
+                        <span>*&nbsp;</span>HR name is required
+                    </div>
+                </div>
+                <div class="form-group col-md">
+                    <label for="email">Email:</label>
+                    <input id="email" type="text" formControlName="email" class="form-control"
+                        [ngClass]="{'is-invalid': f.email.errors && (f.email.dirty || f.email.touched)}">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.email.errors?.required && (f.email.dirty || f.email.touched)">
+                        <span>*&nbsp;</span>Email is required
+                    </div>
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.email.errors?.email && (f.email.dirty || f.email.touched)">
+                        <span>*&nbsp;</span>Email is invalid
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md" formGroupName="pwd">
+                    <label for="password">Password:</label>
+                    <input id="password" type="password" formControlName="password" class="form-control"
+                        [ngClass]="{'is-invalid': f.pwd.get('password').errors && (f.pwd.get('password').dirty || f.pwd.get('password').touched)}">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.pwd.get('password').errors?.required && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
+                        <span>*&nbsp;</span>Password is required
+                    </div>
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.pwd.get('password').errors?.minlength && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
+                        <span>*&nbsp;</span>Minimum 8 characters required
+                    </div>
+                </div>
+                <div class="form-group col-md" formGroupName="pwd">
+                    <label for="confirmpassword">Confirm Password:</label>
+                    <input id="confirmpassword" type="password" formControlName="confirmPassword" class="form-control"
+                        [ngClass]="{'is-invalid': (f.pwd.errors || f.pwd.get('confirmPassword').errors ) && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)}">
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.pwd.get('confirmPassword').errors?.required && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
+                        <span>*&nbsp;</span>Password is required
+                    </div>
+                    <div class="invalid-feedback d-block"
+                        *ngIf="f.pwd.errors?.mismatch && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
+                        <span>*&nbsp;</span>Password do not match
+                    </div>
                 </div>
             </div>
 
-            <div class="form-group col-md">
-                <label for="companylocation">Company Location:</label>
-                <input id="companylocation" type="text" formControlName="company_location" class="form-control"
-                    [ngClass]="{'is-invalid': f.company_location.errors && (f.company_location.dirty || f.company_location.touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.company_location.errors?.required && (f.company_location.dirty || f.company_location.touched)">
-                    <span>*&nbsp;</span>Company location is required
+            <div class="form-group" *ngIf="response && response.length > 0">
+                <div class="invalid-feedback d-block">
+                    <span>*&nbsp;</span>{{response}}
                 </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="description">Company Description:</label>
-            <input id="description" type="text" formControlName="description" class="form-control" [ngClass]="{'is-invalid': f.description.errors && (f.description.dirty || f.description.touched)}">
-            <div class="invalid-feedback d-block" *ngIf="f.description.errors?.required && (f.description.dirty || f.description.touched)">
-                <span>*&nbsp;</span>Company Description is required
+            <div class="mb-1 mt-4">
+                <button class="btn btn-block btn-primary" [disabled]="companyForm.invalid">Register</button>
             </div>
-        </div>
-        <div class="form-group">
-            <label for="keywords">Keywords: <small>(Comma separated)</small></label>
-            <!-- <textarea id="keywords" type="text" formControlName="keywords" class="form-control" [ngClass]="{'is-invalid': f.keywords.errors && (f.keywords.dirty || f.keywords.touched)}"></textarea> -->
-            <form>
-                <app-keywords-textbox (outputKeywords)="outputKeywords($event)"></app-keywords-textbox>
-            </form>
-            <div class="invalid-feedback d-block" *ngIf="f.keywords.errors?.required && (f.keywords.dirty || f.keywords.touched)">
-                <span>*&nbsp;</span>Keywords is required
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md">
-                <label for="hr">HR:</label>
-                <input id="hr" type="text" formControlName="hr" class="form-control" [ngClass]="{'is-invalid': f.hr.errors && (f.hr.dirty || f.hr.touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.hr.errors?.required && (f.hr.dirty || f.hr.touched)">
-                    <span>*&nbsp;</span>HR name is required
-                </div>
-            </div>
-            <div class="form-group col-md">
-                <label for="email">Email:</label>
-                <input id="email" type="text" formControlName="email" class="form-control" [ngClass]="{'is-invalid': f.email.errors && (f.email.dirty || f.email.touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.email.errors?.required && (f.email.dirty || f.email.touched)">
-                    <span>*&nbsp;</span>Email is required
-                </div>
-                <div class="invalid-feedback d-block" *ngIf="f.email.errors?.email && (f.email.dirty || f.email.touched)">
-                    <span>*&nbsp;</span>Email is invalid
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-md" formGroupName="pwd">
-                <label for="password">Password:</label>
-                <input id="password" type="password" formControlName="password" class="form-control" [ngClass]="{'is-invalid': f.pwd.get('password').errors && (f.pwd.get('password').dirty || f.pwd.get('password').touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.pwd.get('password').errors?.required && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
-                    <span>*&nbsp;</span>Password is required
-                </div>
-                <div class="invalid-feedback d-block" *ngIf="f.pwd.get('password').errors?.minlength && (f.pwd.get('password').dirty || f.pwd.get('password').touched)">
-                    <span>*&nbsp;</span>Minimum 8 characters required
-                </div>
-            </div>
-            <div class="form-group col-md" formGroupName="pwd">
-                <label for="confirmpassword">Confirm Password:</label>
-                <input id="confirmpassword" type="password" formControlName="confirmPassword" class="form-control"
-                    [ngClass]="{'is-invalid': (f.pwd.errors || f.pwd.get('confirmPassword').errors ) && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)}">
-                <div class="invalid-feedback d-block" *ngIf="f.pwd.get('confirmPassword').errors?.required && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
-                    <span>*&nbsp;</span>Password is required
-                </div>
-                <div class="invalid-feedback d-block" *ngIf="f.pwd.errors?.mismatch && (f.pwd.get('confirmPassword').dirty || f.pwd.get('confirmPassword').touched)">
-                    <span>*&nbsp;</span>Password do not match
-                </div>
-            </div>
-        </div>
-
-        <div class="form-group" *ngIf="response && response.length > 0">
-            <div class="invalid-feedback d-block">
-                <span>*&nbsp;</span>{{response}}
-            </div>
-        </div>
-        <div class="mb-1 mt-4">
-            <button class="btn btn-block btn-primary" [disabled]="companyForm.invalid">Register</button>
-        </div>
-    </form>
+        </form>
+    </div>
 </div>

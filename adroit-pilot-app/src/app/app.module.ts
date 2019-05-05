@@ -16,6 +16,8 @@ import { SidebarComponent } from './navbar/sidebar/sidebar.component';
 import { JwtInterceptor, ErrorInterceptor } from './helpers';
 import { CompanyPageModule } from './company-page/company-page.module';
 import { SharedModule } from './shared/shared.module';
+import { NguParallaxModule } from '@ngu/parallax';
+import { ParallaxScrollModule } from 'ng2-parallaxscroll';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,8 @@ import { SharedModule } from './shared/shared.module';
     UserPageModule,
     CompanyPageModule,
     SharedModule,
+    NguParallaxModule,
+    ParallaxScrollModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
