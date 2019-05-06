@@ -21,6 +21,10 @@ export class CompanyService {
     );
   }
 
+  fetch_resume_user(path) {
+    window.open(`${environment.apiEndpoint}/user/resume_fetch/${path.split('./')[1]}`);
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
 

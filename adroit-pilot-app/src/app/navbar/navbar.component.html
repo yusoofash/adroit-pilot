@@ -1,9 +1,10 @@
 <nav *ngIf="display">
-    <div class="hamburger cursor-pointer" (click)="displaySidebar = showSidebar()">
-        <i class="fa fa-bars"></i>
+    <div class="hamburger cursor-pointer" (click)="showSidebar()">
+        <i class="fa fa-bars" *ngIf="!displaySidebar"></i>
+        <i class="fa fa-close" *ngIf="displaySidebar"></i>
     </div>
     <div class="nav-title">
-        Adroit Pilot
+        <a routerLink="/home" class="text-white">Adroit Pilot</a>
     </div>
     <div *ngIf="isLoggedin" (click)="logout()" class="logout-btn">
         <button class="btn">Log out</button>

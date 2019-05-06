@@ -9,7 +9,9 @@
       <h3 class="text-uppercase text-center pb-2">{{user.first_name}} {{user.last_name}}</h3><br><br>
       <strong>Email: </strong> {{user.email}}
       <span class="text-capitalize mt-2" *ngIf="user.keywords"><strong>Skills: </strong> {{user.keywords.join(", ")}}</span><br>
-      
+      <div class="mt-2">
+        <button class="btn btn-sm btn-primary" (click)="downloadResume(user.resume)">Download Resume</button>
+      </div>
     </div>
   </div>
 </div>

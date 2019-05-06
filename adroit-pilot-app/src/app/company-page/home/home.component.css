@@ -1,0 +1,33 @@
+.banner{
+    background-image: linear-gradient(to right top, #dc1887, #cd39a3, #b950bb, #9f63cd, #8072d9, #6f71de, #5a70e2, #3b70e7, #3561ea, #3a4fea, #4738e8, #580fe3);
+    min-height: var(--full-height);
+}
+.sub-banner{
+    max-height: 300px;
+    min-height: 100px;
+}
+.btn-user-stack{
+    flex-flow: row;
+}
+.btn-user-stack button{
+    max-width: 100px;
+}
+.btn{
+    width: 120px;
+}
+.text-container{
+    width: 70%;
+    padding-right: 5%;
+}
+@media only screen and (max-width: 700px){
+    .btn-user-stack{
+        flex-flow: column;
+    }
+    .btn-user-stack .btn:first-child{
+        margin-bottom: 10px;
+    }
+    .text-container{
+        width: 80%;
+        padding-right: 0;
+    }
+}

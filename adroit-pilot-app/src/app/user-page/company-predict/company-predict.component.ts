@@ -93,7 +93,10 @@ export class CompanyPredictComponent implements OnInit {
   }
 
   clear_filter() {
-    this.companies = this.origin_companies;
+    console.log('clikeds', this.origin_companies);
+    setTimeout( () => {
+      this.companies = this.origin_companies.map(val => val);
+  }, 500);
     this.salary = 0;
     this.experience = 0;
   }

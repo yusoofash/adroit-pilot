@@ -1,3 +1,21 @@
-<div class="p-3">
-    <h1>Welcome!</h1>
-</div>
+<div *ngIf="user_details" class="">
+        <div class="banner py-3">
+          <h1 class="text-capitalize text-center text-white p-2 responsive-h1">
+              Welcome {{user_details.hr}}!
+          </h1>
+            <div class="d-flex align-items-center text-white justify-content-center" style="padding: 10px 10%; height: 70%;">
+                <div class="text-container">
+                  <div class="my-4" style="line-height: 1.7rem;">
+                    <h2 class="pb-2">End your hunt for the best employee  </h2>
+                    Quick and easy job posting process. Reach out to many active jobseekers.
+                  </div>
+                  <div class="btn-user-stack d-flex">
+                    <a [routerLink]="['/search-users']" class="btn btn-primary mr-3">Search</a>
+                  </div>
+                </div>
+                <img src="assets/building1.png" class="img-fluid sub-banner">
+            </div>
+        </div>
+      
+      
+      </div>

@@ -16,7 +16,8 @@
     <i class="fa fa-plus text-capitalize" *ngIf="!upload_new" (click)="upload_new = true; resume_index = null;">&nbsp;
       <span style="font-family: var(--font-family-sans-serif);">Upload new resume</span>
     </i>
-    <i class="fa fa-trash mb-4 text-capitalize" *ngIf="upload_new" (click)="upload_new = false; resume_index = null; selected_resume = null;">&nbsp;
+    <i class="fa fa-trash mb-4 text-capitalize" *ngIf="upload_new"
+      (click)="upload_new = false; resume_index = null; selected_resume = null;">&nbsp;
       <span style="font-family: var(--font-family-sans-serif);">Upload new resume</span>
     </i>
     <div *ngIf="upload_new" class="input-file">
@@ -28,34 +29,50 @@
 
   <div class="my-4">
     <div class="mb-4">
-      <button class="btn btn-primary" (click)="predict()" [disabled]="selected_resume === null && new_resume === null">Predict</button>
+      <button class="btn btn-primary" (click)="predict()"
+        [disabled]="selected_resume === null && new_resume === null">Predict</button>
     </div>
   </div>
 
-  <div *ngIf="companies">
-    <div class="my-4 mt-5" *ngIf="companies.length > 0">
+  <div *ngIf="origin_companies">
+    <div class="my-4 mt-5" *ngIf="origin_companies.length > 0">
       <h4>Companies Predicted</h4>
       <div class="p-3 card mt-4" style="max-width: 450px">
-        <p><strong>Filter</strong></p>
+        <h5><strong>Filter</strong></h5>
         <div class="mb-2">
-            Experience:
-            <input type="text" [(ngModel)]="experience" (keyup)="filter_companies($event)" placeholder="Enter Experience" class="form-control">
-          </div>
+          Experience:
+          <input type="text" [(ngModel)]="experience" (keyup)="filter_companies($event)" placeholder="Enter Experience"
+            class="mt-2 form-control">
+        </div>
         <div>
           Salary (LPA):
           <ng5-slider [(value)]="salary" [options]="options" (valueChange)="filter_companies($event)"></ng5-slider>
         </div>
-        <small class="cursor-pointer text-secondary font-weight-bold mt-2" (click)="clear_filter()">Clear Filter</small>
+        <div class="cursor-pointer text-secondary font-weight-bold mt-2" (click)="clear_filter()">Clear Filter</div>
       </div>
       <div class="text-capitalize company-container">
         <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
-            <app-simple-card
-            [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+          <div style="width: 12rem; height: 250px;" class="card">
+            <img class="card-img-top" style="height: 150px;padding: 10px;" *ngIf="company.company_thumbnail"
+              [src]="company.company_thumbnail">
+            <div class="card-body text-capitalize text-center d-flex flex-flow-column justify-content-center">
+              <h5 class="card-title">{{company.company_name}}</h5>
+              <p class="card-text">
+                <small>{{company.company_location}}</small>
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
-  
-    <div class="my-4 mt-5" *ngIf="companies.length === 0">
+
+    <div class="my-4 mt-5" *ngIf="companies.length == 0 && origin_companies.length != 0">
+      <div class="alert alert-danger">
+        No match
+      </div>
+    </div>
+
+    <div class="my-4 mt-5" *ngIf="origin_companies.length == 0">
       <div class="alert alert-danger">
         No companies matching your CV
       </div>

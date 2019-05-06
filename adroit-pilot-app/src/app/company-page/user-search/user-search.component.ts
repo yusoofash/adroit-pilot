@@ -31,4 +31,9 @@ export class UserSearchComponent implements OnInit {
     }
   }
 
+  downloadResume(resumes) {
+    const latest_resume_path = resumes[resumes.length - 1];
+    this.companyService.fetch_resume_user(latest_resume_path);
+  }
+
 }

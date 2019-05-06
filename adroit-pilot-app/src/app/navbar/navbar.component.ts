@@ -40,6 +40,7 @@ export class NavbarComponent implements OnInit {
   }
 
   showSidebar() {
+    this.displaySidebar = !this.displaySidebar;
     this.navbarService.toggleSidebar();
   }
 
