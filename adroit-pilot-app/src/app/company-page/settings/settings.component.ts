@@ -28,7 +28,7 @@ export class SettingsComponent implements OnInit {
       subscribe(res => {
         console.log(res);
         this.loaderService.stopLoader();
-        this.company_details = res;
+        this.company_details = new Company(res);
         this.patchValue();
         if (updatemsg) {
           updatemsg();

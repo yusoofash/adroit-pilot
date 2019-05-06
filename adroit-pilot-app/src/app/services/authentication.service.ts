@@ -31,6 +31,10 @@ export class AuthenticationService {
     }
   }
 
+  removeLocalStorage() {
+    localStorage.removeItem('access_token');
+  }
+
   loginUser(email: string, password: string) {
     return this.http.post<any>(`${environment.apiEndpoint}/user/authenticate`, { email, password })
       .pipe(map(user => {

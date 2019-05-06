@@ -24,11 +24,7 @@ export class UserService {
     console.log(id);
     return this.http.put(`${environment.apiEndpoint}/${role}/${id}`, detail)
       .pipe(
-        catchError(this.handleError('updateDetails', [])),
-        map(res => {
-          this.userDetails = new Company(res);
-          return this.userDetails;
-        })
+        catchError(this.handleError('updateDetails', []))
       );
   }
 
@@ -36,11 +32,16 @@ export class UserService {
     const { role, id } = this.role_and_type();
     return this.http.get(`${environment.apiEndpoint}/${role}/${id}`)
       .pipe(
-        catchError(this.handleError('getDetails', [])),
-        map(res => {
-          this.userDetails = new Company(res);
-          return this.userDetails;
-        })
+        catchError(this.handleError('getDetails', []))
+      );
+  }
+
+  updateAccount(details) {
+    const { role, id } = this.role_and_type();
+    details.id = id;
+    return this.http.post(`${environment.apiEndpoint}/${role}/update_account`, {'details': details})
+      .pipe(
+        catchError(this.handleError('updateAccount', []))
       );
   }
 

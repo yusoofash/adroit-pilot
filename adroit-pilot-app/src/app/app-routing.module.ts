@@ -16,6 +16,7 @@ import { AuthGuard } from './guards';
 import { PageNotFoundComponent } from './common';
 import { UserType } from './models';
 import { CompanyPageComponent } from './user-page/company-page/company-page.component';
+import { AccountComponent } from './user-page/account/account.component';
 
 export const routes: Routes = [
   { path: '',
@@ -28,6 +29,7 @@ export const routes: Routes = [
   { path: 'company-login', component: CompanyLoginComponent },
   { path: 'user-login', component: UserLoginComponent },
   { path: 'user-home', component: UserHomeComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },
+  { path: 'user-account', component: AccountComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },
   { path: 'company/:id', component: CompanyPageComponent },
   { path: 'company-search', component: CompanySearchComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },
   { path: 'company-predict', component: CompanyPredictComponent, canActivate: [AuthGuard], data: { role: UserType.USER } },

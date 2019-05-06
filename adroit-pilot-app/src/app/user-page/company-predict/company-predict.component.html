@@ -50,7 +50,7 @@
         </div>
         <div class="cursor-pointer text-secondary font-weight-bold mt-2" (click)="clear_filter()">Clear Filter</div>
       </div>
-      <div class="text-capitalize company-container">
+      <div class="text-capitalize company-container" #scrollMe>
         <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
           <div style="width: 12rem; height: 250px;" class="card">
             <img class="card-img-top" style="height: 150px;padding: 10px;" *ngIf="company.company_thumbnail"
@@ -63,6 +63,9 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="text-center">
+          <button class="btn btn-primary mt-2 text-center" (click)="showCompaniesPredicted()">View More</button>
       </div>
     </div>
 

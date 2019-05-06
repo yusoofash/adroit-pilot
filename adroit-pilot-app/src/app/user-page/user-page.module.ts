@@ -4,13 +4,14 @@ import { UserHomeComponent } from './home/home.component';
 import { SharedModule } from '../shared/shared.module';
 import { CompanySearchComponent } from './company-search/company-search.component';
 import { CompanyPredictComponent } from './company-predict/company-predict.component';
+import { AccountComponent } from './account/account.component';
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
   ],
-  declarations: [UserHomeComponent, CompanySearchComponent, CompanyPredictComponent],
+  declarations: [UserHomeComponent, CompanySearchComponent, CompanyPredictComponent, AccountComponent],
   exports: [
     UserHomeComponent,
     CompanyPredictComponent,

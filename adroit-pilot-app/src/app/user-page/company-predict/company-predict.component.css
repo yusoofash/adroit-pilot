@@ -21,16 +21,16 @@ ul{
 }
 li{
     margin: 14px 0;
-    padding: 10px;
+    padding: 20px 10px;
     background: white;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 80%;
+    font-size: 1rem;
     color: darkslategray;
     border: 1px solid lightgrey;
 }
 .active-resume{
-    background: #628281;
+    background: #005a34;
     transition: all .4s ease;
     color: white;
 }
@@ -54,6 +54,7 @@ li{
     justify-content: center;
     align-items: center;
     flex-flow: column;
+    z-index: 99999999;
 }
 .predict-load img {
     width: 100%;

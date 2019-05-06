@@ -19,3 +19,6 @@
 .btn{
     font-weight: 600;
 }
+.invalid-feedback {
+    color: white
+}

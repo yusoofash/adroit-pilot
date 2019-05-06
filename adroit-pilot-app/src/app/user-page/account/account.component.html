@@ -1,0 +1,46 @@
+<div class="container  py-5">
+  <div class="custom-card p-3 box-shadow" *ngIf="user_details" style="max-width: 600px">
+    <form [formGroup]="account_details" (ngSubmit)="save()">
+      <h2 class="text-uppercase">My Account</h2>
+      <div class="row mt-4">
+        <div class="col-md-6 mb-2">
+          <label for="">First Name:</label>
+          <input type="text" class="form-control" formControlName="firstName" required>
+          <div *ngIf="account_details.get('firstName').invalid && (account_details.get('firstName').dirty || account_details.get('firstName').touched)" class="invalid-feedback d-block">
+            <div *ngIf="account_details.get('firstName').errors.required">
+              First Name is required.
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 mb-2">
+          <label for="">Last Name:</label>
+          <input type="text" class="form-control" formControlName="lastName" required>
+          <div *ngIf="account_details.get('lastName').invalid && (account_details.get('lastName').dirty || account_details.get('lastName').touched)" class="invalid-feedback d-block">
+            <div *ngIf="account_details.get('lastName').errors.required">
+              Last Name is required.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mb-2">
+          <label for="">Password:</label>
+          <input type="password" class="form-control" formControlName="password" required>
+          <div *ngIf="account_details.get('password').invalid && (account_details.get('password').dirty || account_details.get('password').touched)" class="invalid-feedback d-block">
+            <div *ngIf="account_details.get('password').errors.required">
+              Password is required.
+            </div>
+            <div *ngIf="account_details.get('password').errors.minlength">
+              Password must be at least 6 characters.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row mt-2">
+        <div class="col-md-12">
+          <button class="btn btn-primary" type="submit" [disabled]="!account_details.valid">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

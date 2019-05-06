@@ -3,6 +3,7 @@ import { UserService, LoaderService } from '../../services';
 import { Company } from '../../models';
 import { Router } from '@angular/router';
 import { Options } from 'ng5-slider';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-company-predict',
@@ -16,7 +17,7 @@ export class CompanyPredictComponent implements OnInit {
   new_resume = null;
   load_start = false;
   origin_companies: Company[] = null;
-  companies: Company[] = null;
+  companies: Company[] = [];
   resume_index = null;
   upload_new = false;
   salary = 0;
@@ -27,8 +28,13 @@ export class CompanyPredictComponent implements OnInit {
     ceil: 40
   };
 
+  start_index = 0;
+  end_index = 0;
+  cur_count = 5;
+
   constructor(private userDetails: UserService,
     private router: Router,
+    private toastr: ToastrService,
     private loaderService: LoaderService) {
     this.getUserDetails();
   }
@@ -50,27 +56,48 @@ export class CompanyPredictComponent implements OnInit {
   }
 
   predict() {
+    this.end_index = this.start_index = 0;
+    this.companies = [];
     if (this.new_resume || this.selected_resume) {
       // this.loaderService.startLoader();
       this.load_start = true;
       if (this.new_resume) {
         this.userDetails.uploadResume(this.new_resume).subscribe(res => {
           // this.loaderService.stopLoader();
-          this.load_start = false;
-          this.companies = res;
           this.origin_companies = res;
+          this.load_start = false;
+          this.showCompaniesPredicted();
           this.getUserDetails();
         });
       } else if (this.selected_resume) {
         this.userDetails.getPredictions(this.selected_resume).subscribe(res => {
           // this.loaderService.stopLoader();
-          this.load_start = false;
-          this.companies = res;
           this.origin_companies = res;
+          this.load_start = false;
+          this.showCompaniesPredicted();
           console.log('predicted companies', res);
         });
       }
     }
+  }
+
+  showCompaniesPredicted() {
+    this.loaderService.startLoader();
+    setTimeout(() => {
+      this.loaderService.stopLoader();
+      if (this.end_index === this.origin_companies.length && this.start_index === this.end_index) {
+        this.toastr.info('No More Results', 'Info');
+      } else if (this.end_index >= this.origin_companies.length || (this.end_index + this.cur_count >= this.origin_companies.length)) {
+        this.end_index = this.origin_companies.length;
+      } else {
+        this.end_index += this.cur_count;
+      }
+
+      while (this.start_index < this.end_index) {
+        this.companies.push(this.origin_companies[this.start_index]);
+        this.start_index++;
+      }
+    }, 1000);
   }
 
   filter_companies(e) {
@@ -94,9 +121,9 @@ export class CompanyPredictComponent implements OnInit {
 
   clear_filter() {
     console.log('clikeds', this.origin_companies);
-    setTimeout( () => {
+    setTimeout(() => {
       this.companies = this.origin_companies.map(val => val);
-  }, 500);
+    }, 500);
     this.salary = 0;
     this.experience = 0;
   }
