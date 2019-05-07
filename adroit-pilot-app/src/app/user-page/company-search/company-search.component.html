@@ -28,9 +28,14 @@
           <h4>Companies</h4>
           <small class="mr-3 show-mobile text-info cursor-pointer" (click)="showFilter = true">Add filter</small>
       </div>
-      <div class="my-4 d-flex company-lists" style="flex-flow: row wrap;">
-        <div *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer" (click)="showCompany(company)">
-          <app-simple-card *ngIf="filter(company)" [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+      <div *ngIf="origin_companies">
+        <div class="my-4 d-flex company-lists" style="flex-flow: row wrap;" *ngIf="companies.length > 0">
+          <div *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer" (click)="showCompany(company)">
+            <app-simple-card *ngIf="filter(company)" [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
+          </div>
+          <div class="text-center">
+            <button class="btn btn-primary mt-2 text-center" (click)="showCompaniesPredicted()">View More</button>
+          </div>
         </div>
       </div>
     </div>

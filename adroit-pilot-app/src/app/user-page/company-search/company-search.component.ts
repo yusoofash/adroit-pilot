@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService, LoaderService } from '../../services';
 import { Company } from 'src/app/models';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-company-search',
@@ -10,21 +11,28 @@ import { Router } from '@angular/router';
 })
 export class CompanySearchComponent implements OnInit {
 
-  companies: Company[];
+  companies: Company[] = [];
+  origin_companies: Company[] = null;
   searchCompany = '';
   searchLocation = '';
   searchKeyword = '';
 
   showFilter = false;
 
+  start_index = 0;
+  end_index = 0;
+  cur_count = 5;
+
   constructor(private userService: UserService,
+    private toastr: ToastrService,
     private router: Router,
     private loaderService: LoaderService) {
     this.loaderService.startLoader();
     this.userService.getCompanies()
       .subscribe(res => {
         this.loaderService.stopLoader();
-        this.companies = res;
+        this.origin_companies = res;
+        this.showCompaniesPredicted();
         console.log(res);
       });
   }
@@ -48,6 +56,25 @@ export class CompanySearchComponent implements OnInit {
     return keywords.some(keyword => {
       return keyword.toLowerCase().includes(this.searchKeyword.toLowerCase());
     });
+  }
+
+  showCompaniesPredicted() {
+    this.loaderService.startLoader();
+    setTimeout(() => {
+      this.loaderService.stopLoader();
+      if (this.end_index === this.origin_companies.length && this.start_index === this.end_index) {
+        this.toastr.info('No More Results', 'Info');
+      } else if (this.end_index >= this.origin_companies.length || (this.end_index + this.cur_count >= this.origin_companies.length)) {
+        this.end_index = this.origin_companies.length;
+      } else {
+        this.end_index += this.cur_count;
+      }
+
+      while (this.start_index < this.end_index) {
+        this.companies.push(this.origin_companies[this.start_index]);
+        this.start_index++;
+      }
+    }, 1000);
   }
 
   clearFilters() {
