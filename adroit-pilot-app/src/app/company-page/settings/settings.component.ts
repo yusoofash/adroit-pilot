@@ -41,8 +41,8 @@ export class SettingsComponent implements OnInit {
       keywords: ['', Validators.required],
       description: ['', Validators.required],
       company_location: ['', Validators.required],
-      company_salary: ['', Validators.required],
-      company_experience: ['', Validators.required],
+      company_salary: [''],
+      company_experience: [''],
       company_thumbnail: ['']
     });
     this.loaderService.startLoader();

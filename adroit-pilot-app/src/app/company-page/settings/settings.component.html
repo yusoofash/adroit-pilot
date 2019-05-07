@@ -38,19 +38,11 @@
     <div class="form-group">
         <label>Salary: </label>
         <input type="text" formControlName="company_salary" class="form-control">
-        <div class="invalid-feedback d-block text-white"
-            *ngIf="f.company_salary.errors?.required && (f.company_salary.dirty || f.company_salary.touched)">
-            <span>*&nbsp;</span>Salary is required
-        </div>
     </div>
 
     <div class="form-group">
         <label>Experience: </label>
         <input type="text" formControlName="company_experience" class="form-control">
-        <div class="invalid-feedback d-block text-white"
-            *ngIf="f.company_experience.errors?.required && (f.company_experience.dirty || f.company_experience.touched)">
-            <span>*&nbsp;</span>Experience is required
-        </div>
     </div>
 
     <div class="form-group">
