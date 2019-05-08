@@ -1,5 +1,5 @@
 <div style="width: 12rem; height: 250px;" class="card"> 
-  <img class="card-img-top" style="height: 150px;padding: 10px;" *ngIf="details.thumbnail" [src]="details.thumbnail">
+  <img class="card-img-top" style="height: 150px;padding: 10px;object-fit: contain;" *ngIf="details.thumbnail" [src]="details.thumbnail">
   <div class="card-body text-capitalize text-center d-flex flex-flow-column justify-content-center">
     <h5 class="card-title">{{details.title}}</h5>
     <p class="card-text">

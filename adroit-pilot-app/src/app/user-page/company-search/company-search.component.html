@@ -1,22 +1,22 @@
 <div class="">
 
-  <div class="d-flex" 
-  style="min-height: var(--full-height);">
+  <div class="d-flex" style="min-height: var(--full-height);">
 
     <div class="left" [ngClass]="{'left-mb': showFilter}">
       <span class="show-mobile times text-white cursor-pointer" (click)="showFilter = false">&times;</span>
       <div class="card p-3 mt-4 filter-card">
         <div class="mb-4">
           <label for="name">Filter name:</label>
-          <input id="name" type="text" class="form-control" [(ngModel)]="searchCompany">
+          <input id="name" type="text" class="form-control" [(ngModel)]="searchCompany" (keyup)="filter_companies()">
         </div>
         <div class="mb-4">
           <label for="location">Filter location:</label>
-          <input id="location" type="text" class="form-control" [(ngModel)]="searchLocation">
+          <input id="location" type="text" class="form-control" [(ngModel)]="searchLocation"
+            (keyup)="filter_companies()">
         </div>
         <div class="mb-4">
           <label for="keyword">Filter keyword:</label>
-          <input id="keyword" type="text" class="form-control" [(ngModel)]="searchKeyword">
+          <input id="keyword" type="text" class="form-control" [(ngModel)]="searchKeyword" (keyup)="filter_companies()">
         </div>
         <small class="mb-4 text-secondary cursor-pointer" (click)="clearFilters()">Clear all filters</small>
         <button class="btn btn-primary show-mobile" (click)="showFilter = false">Go!</button>
@@ -25,17 +25,18 @@
 
     <div class="right">
       <div class="d-flex mb-2 mt-4 align-items-center" style="justify-content: space-between;">
-          <h4>Companies</h4>
-          <small class="mr-3 show-mobile text-info cursor-pointer" (click)="showFilter = true">Add filter</small>
+        <h4>Companies</h4>
+        <small class="mr-3 show-mobile text-info cursor-pointer" (click)="showFilter = true">Add filter</small>
       </div>
       <div *ngIf="origin_companies">
         <div class="my-4 d-flex company-lists" style="flex-flow: row wrap;" *ngIf="companies.length > 0">
-          <div *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer" (click)="showCompany(company)">
-            <app-simple-card *ngIf="filter(company)" [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}"></app-simple-card>
-          </div>
-          <div class="text-center">
-            <button class="btn btn-primary mt-2 text-center" (click)="showCompaniesPredicted()">View More</button>
-          </div>
+          <app-simple-card *ngFor="let company of companies; let i = index;" class="mr-4 mb-4 cursor-pointer"
+            (click)="showCompany(company)"
+            [details]="{thumbnail: company.company_thumbnail, title: company.company_name, text: company.company_location}">
+          </app-simple-card>
+        </div>
+        <div class="text-center mb-5" *ngIf="companies.length > 0">
+          <button class="btn btn-primary mt-2 text-center" (click)="showCompaniesPredicted()">View More</button>
         </div>
       </div>
     </div>

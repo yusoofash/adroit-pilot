@@ -2,14 +2,17 @@
   <h4 class="text-capitalize py-3">
     Predict companies using CV
   </h4>
-  <div class="my-4" *ngIf="user_details.resume">
-    <label>Your resumes:</label>
-    <ul>
-      <li *ngFor="let resume of user_details.resume; let i = index;" [ngClass]="{'active-resume': i===resume_index}"
-        (click)="selected_resume = resume; resume_index = i; this.new_resume = null;">
-        {{resume | resumeName}}
-      </li>
-    </ul>
+  <div *ngIf="user_details.resume">
+    <div class="my-4" *ngIf="user_details.resume.length > 0">
+      <label>Your resumes:</label>
+      <ul>
+        <li *ngFor="let resume of user_details.resume; let i = index;" [ngClass]="{'active-resume': i===resume_index, 'd-flex align-items-center': true}"
+          (click)="selected_resume = resume; resume_index = i; this.new_resume = null;">
+          {{resume | resumeName}}
+          <i class="fa fa-close pr-2 ml-auto" (click)="delete_resume(resume)"></i>
+        </li>
+      </ul>
+    </div>
   </div>
 
   <div class="mt-2 text-white upload-new bg-primary">
@@ -50,10 +53,10 @@
         </div>
         <div class="cursor-pointer text-secondary font-weight-bold mt-2" (click)="clear_filter()">Clear Filter</div>
       </div>
-      <div class="text-capitalize company-container" #scrollMe>
+      <div class="text-capitalize company-container" #scrollMe *ngIf="companies">
         <div class="my-3 mr-3 cursor-pointer" *ngFor="let company of companies" (click)="showCompany(company)">
           <div style="width: 12rem; height: 250px;" class="card">
-            <img class="card-img-top" style="height: 150px;padding: 10px;" *ngIf="company.company_thumbnail"
+            <img class="card-img-top" style="height: 150px;padding: 10px;object-fit: contain" *ngIf="company.company_thumbnail"
               [src]="company.company_thumbnail">
             <div class="card-body text-capitalize text-center d-flex flex-flow-column justify-content-center">
               <h5 class="card-title">{{company.company_name}}</h5>
@@ -69,9 +72,11 @@
       </div>
     </div>
 
-    <div class="my-4 mt-5" *ngIf="companies.length == 0 && origin_companies.length != 0">
-      <div class="alert alert-danger">
-        No match
+    <div *ngIf="companies">
+      <div class="my-4 mt-5" *ngIf="companies.length == 0 && origin_companies.length != 0">
+        <div class="alert alert-danger">
+          No match
+        </div>
       </div>
     </div>
 

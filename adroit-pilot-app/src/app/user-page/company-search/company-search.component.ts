@@ -40,16 +40,17 @@ export class CompanySearchComponent implements OnInit {
   ngOnInit() {
   }
 
-  filter(company: Company) {
-    if (this.searchCompany.length === 0 && this.searchLocation.length === 0 && this.searchKeyword.length === 0) {
-      return true;
-    } else if ((company.company_name.toLowerCase().includes(this.searchCompany.toLowerCase()) || this.searchCompany.length === 0) &&
-      (company.company_location.toLowerCase().includes(this.searchLocation.toLowerCase()) || this.searchLocation.length === 0) &&
-      (this.filterKeywords(company.keywords) || this.searchKeyword.length === 0)) {
-      return true;
-    } else {
-      return false;
-    }
+  filter_companies() {
+    this.companies = this.origin_companies.filter(val => {
+      if ((val.company_name.toLowerCase().includes(this.searchCompany.toLowerCase()) || this.searchCompany.length === 0) &&
+        (val.company_location.toLowerCase().includes(this.searchLocation.toLowerCase()) || this.searchLocation.length === 0) &&
+        (this.filterKeywords(val.keywords) || this.searchKeyword.length === 0)
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    });
   }
 
   filterKeywords(keywords: Array<string>) {
@@ -81,6 +82,11 @@ export class CompanySearchComponent implements OnInit {
     this.searchCompany = '';
     this.searchLocation = '';
     this.searchKeyword = '';
+
+    this.start_index = this.end_index = 0;
+    this.cur_count = 5;
+    this.companies = [];
+    this.showCompaniesPredicted();
   }
 
   showCompany(company: Company) {

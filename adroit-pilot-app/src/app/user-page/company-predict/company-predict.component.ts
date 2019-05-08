@@ -17,7 +17,7 @@ export class CompanyPredictComponent implements OnInit {
   new_resume = null;
   load_start = false;
   origin_companies: Company[] = null;
-  companies: Company[] = [];
+  companies: Company[];
   resume_index = null;
   upload_new = false;
   salary = 0;
@@ -32,7 +32,7 @@ export class CompanyPredictComponent implements OnInit {
   end_index = 0;
   cur_count = 5;
 
-  constructor(private userDetails: UserService,
+  constructor(private userService: UserService,
     private router: Router,
     private toastr: ToastrService,
     private loaderService: LoaderService) {
@@ -44,7 +44,7 @@ export class CompanyPredictComponent implements OnInit {
 
   getUserDetails() {
     this.loaderService.startLoader();
-    this.userDetails.getDetails().subscribe(res => {
+    this.userService.getDetails().subscribe(res => {
       this.loaderService.stopLoader();
       this.user_details = res;
     });
@@ -62,7 +62,7 @@ export class CompanyPredictComponent implements OnInit {
       // this.loaderService.startLoader();
       this.load_start = true;
       if (this.new_resume) {
-        this.userDetails.uploadResume(this.new_resume).subscribe(res => {
+        this.userService.uploadResume(this.new_resume).subscribe(res => {
           // this.loaderService.stopLoader();
           this.origin_companies = res;
           this.load_start = false;
@@ -70,7 +70,7 @@ export class CompanyPredictComponent implements OnInit {
           this.getUserDetails();
         });
       } else if (this.selected_resume) {
-        this.userDetails.getPredictions(this.selected_resume).subscribe(res => {
+        this.userService.getPredictions(this.selected_resume).subscribe(res => {
           // this.loaderService.stopLoader();
           this.origin_companies = res;
           this.load_start = false;
@@ -78,6 +78,18 @@ export class CompanyPredictComponent implements OnInit {
           console.log('predicted companies', res);
         });
       }
+    }
+  }
+
+  delete_resume(resume) {
+    if (confirm('Are u sure to delete')) {
+      this.loaderService.startLoader();
+      this.userService.deleteResume(resume).subscribe(res => {
+        console.log(res);
+        this.loaderService.stopLoader();
+        this.getUserDetails();
+        this.selected_resume = null;
+      });
     }
   }
 

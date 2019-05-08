@@ -39,7 +39,7 @@ export class UserService {
   updateAccount(details) {
     const { role, id } = this.role_and_type();
     details.id = id;
-    return this.http.post(`${environment.apiEndpoint}/${role}/update_account`, {'details': details})
+    return this.http.post(`${environment.apiEndpoint}/${role}/update_account`, { 'details': details })
       .pipe(
         catchError(this.handleError('updateAccount', []))
       );
@@ -68,6 +68,17 @@ export class UserService {
     return this.http.post<Company[]>(`${environment.apiEndpoint}/user/resume`, formData)
       .pipe(
         catchError(this.handleError('uploadResume', [])),
+      );
+  }
+
+  deleteResume(resume) {
+    const { role, id } = this.role_and_type();
+    return this.http.post(`${environment.apiEndpoint}/${role}/delete_resume`, {
+      resume,
+      id
+    })
+      .pipe(
+        catchError(this.handleError('deleteResume', []))
       );
   }
 
