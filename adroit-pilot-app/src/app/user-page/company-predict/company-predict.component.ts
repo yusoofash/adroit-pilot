@@ -27,6 +27,7 @@ export class CompanyPredictComponent implements OnInit {
     floor: 1,
     ceil: 40
   };
+  view_more_btn = true;
 
   start_index = 0;
   end_index = 0;
@@ -109,7 +110,7 @@ export class CompanyPredictComponent implements OnInit {
         this.companies.push(this.origin_companies[this.start_index]);
         this.start_index++;
       }
-    }, 1000);
+    }, 100);
   }
 
   filter_companies(e) {
@@ -119,6 +120,7 @@ export class CompanyPredictComponent implements OnInit {
 
       return (companySalary <= this.salary * 100000) && (companyExperience <= this.experience);
     });
+    this.view_more_btn = false;
   }
 
   // sortFunc(a: Company, b: Company) {
@@ -132,12 +134,12 @@ export class CompanyPredictComponent implements OnInit {
   }
 
   clear_filter() {
-    console.log('clikeds', this.origin_companies);
-    setTimeout(() => {
-      this.companies = this.origin_companies.map(val => val);
-    }, 500);
+    this.end_index = this.start_index = 0;
+    this.companies = [];
+    this.showCompaniesPredicted();
     this.salary = 0;
     this.experience = 0;
+    this.view_more_btn = true;
   }
 
 }
