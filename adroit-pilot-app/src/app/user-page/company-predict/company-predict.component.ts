@@ -24,7 +24,7 @@ export class CompanyPredictComponent implements OnInit {
   high_salary = 40;
   experience = 0;
   options: Options = {
-    floor: 1,
+    floor: 0,
     ceil: 40
   };
   view_more_btn = true;
